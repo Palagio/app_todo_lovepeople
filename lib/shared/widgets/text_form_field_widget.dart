@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class TextFormFieldWidget extends StatelessWidget {
+class UserTextFormFieldWidget extends StatelessWidget {
   final String hintText;
   final bool obscure;
-  TextFormFieldWidget({Key? key, required this.hintText, this.obscure = false})
+  UserTextFormFieldWidget({Key? key, required this.hintText, this.obscure = false})
       : super(key: key);
 
   @override

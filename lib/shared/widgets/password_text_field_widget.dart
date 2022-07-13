@@ -1,4 +1,4 @@
-import 'package:app_todo_lovepeople/presenters/auth_presenter.dart';
+import 'package:app_todo_lovepeople/modules/auth_module/auth_presenter.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';

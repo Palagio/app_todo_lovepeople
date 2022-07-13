@@ -1,4 +1,4 @@
-import 'package:app_todo_lovepeople/views/auth_view.dart';
+import 'package:app_todo_lovepeople/modules/auth_module/auth_view.dart';
 import 'package:flutter/material.dart';
 
 class AppWidget extends StatelessWidget {

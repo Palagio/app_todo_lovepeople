@@ -1,4 +1,4 @@
-import 'package:app_todo_lovepeople/models/auth_model.dart';
+import 'package:app_todo_lovepeople/modules/auth_module/auth_model.dart';
 import 'package:flutter/material.dart';
 
 class AuthPresenter with ChangeNotifier {

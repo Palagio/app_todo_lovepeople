@@ -1,5 +1,5 @@
-import 'package:app_todo_lovepeople/views/widgets/password_text_field_widget.dart';
-import 'package:app_todo_lovepeople/views/widgets/text_form_field_widget.dart';
+import 'package:app_todo_lovepeople/shared/widgets/password_text_field_widget.dart';
+import 'package:app_todo_lovepeople/shared/widgets/text_form_field_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -81,7 +81,7 @@ class _AuthViewState extends State<AuthView> {
               SizedBox(
                 height: size.height * 0.03,
               ),
-              TextFormFieldWidget(
+              UserTextFormFieldWidget(
                 hintText: 'Número de telefone, email ou CPF',
               ),
               PasswordFormFieldWidget(hintText: 'Senha'),    

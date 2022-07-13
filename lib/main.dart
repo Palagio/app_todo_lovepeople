@@ -1,6 +1,6 @@
 import 'package:app_todo_lovepeople/app_widget.dart';
-import 'package:app_todo_lovepeople/models/auth_model.dart';
-import 'package:app_todo_lovepeople/presenters/auth_presenter.dart';
+import 'package:app_todo_lovepeople/modules/auth_module/auth_model.dart';
+import 'package:app_todo_lovepeople/modules/auth_module/auth_presenter.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
