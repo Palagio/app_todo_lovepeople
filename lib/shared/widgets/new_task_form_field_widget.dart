@@ -3,10 +3,9 @@ import 'package:google_fonts/google_fonts.dart';
 
 class NewTaskFormFieldWidget extends StatelessWidget {
   final String hintText;
-  final bool obscure;
+  final TextEditingController? controller;
 
-  const NewTaskFormFieldWidget(
-      {Key? key, required this.hintText, this.obscure = false})
+  const NewTaskFormFieldWidget({Key? key, required this.hintText, this.controller})
       : super(key: key);
 
   @override
@@ -17,6 +16,7 @@ class NewTaskFormFieldWidget extends StatelessWidget {
       height: size.height * 0.9,
       width: size.width * 0.9,
       child: TextFormField(
+        controller: controller,
         maxLines: 20,
         decoration: InputDecoration(
           hintText: hintText,

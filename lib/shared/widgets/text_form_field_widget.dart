@@ -5,10 +5,12 @@ import 'package:provider/provider.dart';
 
 class UserTextFormFieldWidget extends StatelessWidget {
   final String hintText;
+  final TextEditingController? controller;
 
   UserTextFormFieldWidget({
     Key? key,
-    required this.hintText,
+    required this.hintText, 
+    this.controller,
   }) : super(key: key);
 
   @override
