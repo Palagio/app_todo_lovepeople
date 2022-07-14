@@ -1,3 +1,5 @@
+import 'package:app_todo_lovepeople/modules/auth/widgets/auth_text_button_widget.dart';
+import 'package:app_todo_lovepeople/shared/widgets/dynamic-button_widget.dart';
 import 'package:app_todo_lovepeople/shared/widgets/password_text_field_widget.dart';
 import 'package:app_todo_lovepeople/shared/widgets/text_form_field_widget.dart';
 import 'package:flutter/material.dart';
@@ -11,11 +13,6 @@ class AuthView extends StatefulWidget {
 }
 
 class _AuthViewState extends State<AuthView> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -84,7 +81,30 @@ class _AuthViewState extends State<AuthView> {
               UserTextFormFieldWidget(
                 hintText: 'Número de telefone, email ou CPF',
               ),
-              PasswordFormFieldWidget(hintText: 'Senha'),    
+              SizedBox(
+                height: size.height * 0.03,
+              ),
+              PasswordTextFormFieldWidget(
+                hintText: 'Senha',
+              ),
+              AuthTextButtonWidget(
+                buttonText: 'Clique aqui',
+                text: 'Esqueceu seu login ou senha? ',
+              ),
+              SizedBox(
+                height: size.height * 0.05,
+              ),
+              DynamicButtonWidget(
+                text: 'Entrar',
+                buttonColor: Color.fromARGB(255, 50, 1, 185),
+                width: size.width * 0.3,
+                radius: 15,
+              ),
+              SizedBox(height: size.height * 0.07),
+              AuthTextButtonWidget(
+                text: 'Não possui cadastro? ',
+                buttonText: 'Clique aqui',
+              )
             ],
           ),
         ),
