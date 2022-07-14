@@ -1,6 +1,6 @@
+import 'package:app_todo_lovepeople/shared/widgets/text_form_field_widget.dart';
 import 'package:app_todo_lovepeople/views/widgets/app_bar_widget.dart';
 import 'package:app_todo_lovepeople/views/widgets/new_task_form_field_widget.dart';
-import 'package:app_todo_lovepeople/views/widgets/text_form_field_widget.dart';
 
 import 'package:flutter/material.dart';
 
@@ -28,7 +28,7 @@ class _AddNewTaskViewState extends State<AddNewTaskView> {
           Positioned(
             top: size.height * 0.05,
             left: size.width * 0.05,
-            child: const TextFormFieldWidget(
+            child: UserTextFormFieldWidget(
               hintText: 'Título da Tarefa',
             ),
           ),
