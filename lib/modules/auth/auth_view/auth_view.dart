@@ -116,7 +116,25 @@ class _AuthViewState extends State<AuthView> {
                   text: 'Não possui cadastro? ',
                   buttonText: 'Clique aqui',
                 ),
-               
+                InkWell(
+                    child: Container(
+                      height: 50,
+                      width: 50,
+                      color: Colors.amber,
+                    ),
+                    onTap: () {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              content: Container(
+                                width: 200,
+                                height: 300,
+                                color: Colors.amber,
+                              ),
+                            );
+                          });
+                    }),
               ],
             );
           }),
