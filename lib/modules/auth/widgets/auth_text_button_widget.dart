@@ -4,11 +4,13 @@ import 'package:google_fonts/google_fonts.dart';
 class AuthTextButtonWidget extends StatelessWidget {
   final String text;
   final String buttonText;
+  final double marginRight;
 
   const AuthTextButtonWidget({
     Key? key,
     required this.text,
     required this.buttonText,
+    required this.marginRight,
   }) : super(key: key);
 
   @override
@@ -16,8 +18,7 @@ class AuthTextButtonWidget extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return Container(
-      margin:
-          EdgeInsets.only(left: size.width * 0.055, top: size.height * 0.013),
+      margin: EdgeInsets.only(right: marginRight, top: size.height * 0.013),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

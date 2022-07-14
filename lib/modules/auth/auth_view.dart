@@ -90,6 +90,7 @@ class _AuthViewState extends State<AuthView> {
               AuthTextButtonWidget(
                 buttonText: 'Clique aqui',
                 text: 'Esqueceu seu login ou senha? ',
+                marginRight: size.width * 0.18,
               ),
               SizedBox(
                 height: size.height * 0.05,
@@ -102,6 +103,7 @@ class _AuthViewState extends State<AuthView> {
               ),
               SizedBox(height: size.height * 0.07),
               AuthTextButtonWidget(
+                marginRight: 0,
                 text: 'Não possui cadastro? ',
                 buttonText: 'Clique aqui',
               )
