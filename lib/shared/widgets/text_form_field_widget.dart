@@ -17,7 +17,7 @@ class UserTextFormFieldWidget extends StatelessWidget {
 
     return Consumer<AuthPresenter>(builder: (context, presenter, child) {
       return Container(
-        height: size.height * 0.07,
+        height: size.height * 0.06,
         width: size.width * 0.9,
         decoration: BoxDecoration(
           color: Colors.white,

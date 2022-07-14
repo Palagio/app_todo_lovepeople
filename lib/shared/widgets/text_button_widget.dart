@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class AuthTextButtonWidget extends StatelessWidget {
+class TextButtonWidget extends StatelessWidget {
   final String text;
   final String buttonText;
+  final String route;
   final double marginRight;
 
-  const AuthTextButtonWidget({
+  const TextButtonWidget({
     Key? key,
     required this.text,
     required this.buttonText,
     required this.marginRight,
+    required this.route,
   }) : super(key: key);
 
   @override
@@ -32,14 +34,17 @@ class AuthTextButtonWidget extends StatelessWidget {
               ),
             ),
           ),
-          Container(
-            child: Text(
-              buttonText,
-              style: GoogleFonts.openSans(
-                textStyle: TextStyle(
-                  fontSize: 14,
-                  color: Color.fromARGB(255, 255, 213, 0),
-                  fontWeight: FontWeight.w500,
+          GestureDetector(
+            onTap: () => Navigator.pushNamed(context, '/signUpView'),
+            child: Container(
+              child: Text(
+                buttonText,
+                style: GoogleFonts.openSans(
+                  textStyle: TextStyle(
+                    fontSize: 14,
+                    color: Color.fromARGB(255, 255, 213, 0),
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ),
             ),
