@@ -1,6 +1,6 @@
 import 'package:app_todo_lovepeople/shared/widgets/text_form_field_widget.dart';
-import 'package:app_todo_lovepeople/views/widgets/app_bar_widget.dart';
-import 'package:app_todo_lovepeople/views/widgets/new_task_form_field_widget.dart';
+import 'package:app_todo_lovepeople/modules/home/widgets/app_bar_widget.dart';
+import 'package:app_todo_lovepeople/shared/widgets/new_task_form_field_widget.dart';
 
 import 'package:flutter/material.dart';
 
@@ -40,11 +40,22 @@ class _AddNewTaskViewState extends State<AddNewTaskView> {
             ),
           ),
           Positioned(
-              top: size.height * 0.65,
-              left: size.width * 0.05,
+            top: size.height * 0.63,
+            left: size.width * 0.01,
+            child: Container(
+              width: 400,
               child: Row(
-                children: [ColorBoxSelection()],
-              ))
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ColorBoxSelection(),
+                  ColorBoxSelection(),
+                  ColorBoxSelection(),
+                  ColorBoxSelection(),
+                  ColorBoxSelection(),
+                ],
+              ),
+            ),
+          )
         ],
       ),
       bottomNavigationBar: Row(
@@ -57,7 +68,7 @@ class _AddNewTaskViewState extends State<AddNewTaskView> {
               height: 50,
               child: InkWell(
                 onTap: () {
-                  Navigator.pushNamed(context, '/home_view');
+                  Navigator.pushNamed(context, '/home');
                 },
                 child: Image.asset(
                   'assets/images/shared/cross.png',
@@ -73,7 +84,7 @@ class _AddNewTaskViewState extends State<AddNewTaskView> {
               height: 50,
               child: InkWell(
                 onTap: () {
-                  Navigator.pushNamed(context, '/add_view');
+                  Navigator.pushNamed(context, '/add_new');
                 },
                 child: Image.asset(
                   'assets/images/shared/cross.png',
@@ -88,13 +99,19 @@ class _AddNewTaskViewState extends State<AddNewTaskView> {
   }
 
   InkWell ColorBoxSelection() {
+     Color? color;
+
     return InkWell(
-      child: Container(
-        width: 50,
-        height: 50,
-        decoration: const BoxDecoration(
-          shape: BoxShape.circle,
-          color: Colors.white,
+      onTap: () {},
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+          width: 50,
+          height: 50,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: color,
+          ),
         ),
       ),
     );

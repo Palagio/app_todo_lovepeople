@@ -1,5 +1,5 @@
-import 'package:app_todo_lovepeople/views/widgets/app_bar_widget.dart';
-import 'package:app_todo_lovepeople/views/widgets/search_words_widget.dart';
+import 'package:app_todo_lovepeople/modules/home/widgets/app_bar_widget.dart';
+import 'package:app_todo_lovepeople/modules/home/widgets/search_words_widget.dart';
 
 import 'package:flutter/material.dart';
 import 'widgets/container_list_widget.dart';
@@ -71,7 +71,7 @@ class _HomeViewState extends State<HomeView> {
           height: 50,
           child: InkWell(
             onTap: () {
-              Navigator.pushNamed(context, '/add_view');
+              Navigator.pushNamed(context, '/add_new');
             },
             child: Image.asset(
               'assets/images/shared/plus.png',

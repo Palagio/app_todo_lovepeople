@@ -12,7 +12,6 @@ class SearchWordsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-
     return SizedBox(
       height: size.height * 0.1,
       width: size.width * 0.9,
