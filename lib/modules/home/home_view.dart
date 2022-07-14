@@ -15,6 +15,8 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    bool status = true;
+
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 169, 1, 247),
       appBar: AppBarWidget(
@@ -34,7 +36,7 @@ class _HomeViewState extends State<HomeView> {
                 ),
               ),
               ContainerListWidget(
-                color: const Color(0xFFC7FFCB),
+                color: status ? Color(0xFFC7FFCB): Color(0xFFC7FFCB),
                 size: size,
                 description:
                     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
