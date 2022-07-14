@@ -1,4 +1,3 @@
-import 'package:app_todo_lovepeople/modules/auth/auth_model.dart';
 import 'package:app_todo_lovepeople/modules/auth/auth_presenter.dart';
 import 'package:app_todo_lovepeople/shared/widgets/text_button_widget.dart';
 import 'package:app_todo_lovepeople/shared/widgets/dynamic-button_widget.dart';
@@ -128,9 +127,27 @@ class _AuthViewState extends State<AuthView> {
                           builder: (BuildContext context) {
                             return AlertDialog(
                               content: Container(
-                                width: 200,
-                                height: 300,
-                                color: Colors.amber,
+                                padding: EdgeInsets.zero,
+                                width: size.width * 0.85,
+                                height: size.height * 0.1,
+                                child: Stack(
+                                  children: [
+                                    Positioned(
+                                      top: size.height * 0.005,
+                                      child: Text(
+                                        'Deseja deletar esse item?',
+                                        style: GoogleFonts.montserrat(
+                                          textStyle: TextStyle(
+                                            color:
+                                                Color.fromARGB(255, 50, 1, 185),
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             );
                           });
