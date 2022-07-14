@@ -30,16 +30,20 @@ class AppBarWidget extends AppBar {
             ),
           ),
           leading: Container(
+            child: Transform.scale(
+              alignment: Alignment.center,
+              scale: 0.6,
+              child: Image.asset(
+                'assets/images/shared/logo.png',
+                fit: BoxFit.cover,
+              ),
+            ),
             decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  bottomRight: Radius.circular(80),
-                ),
-                image: DecorationImage(
-                  image: AssetImage('assets/images/shared/logo.png'),
-                  fit: BoxFit.contain,
-                  alignment: Alignment.center,
-                )),
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                bottomRight: Radius.circular(150),
+              ),
+            ),
           ),
         );
 }

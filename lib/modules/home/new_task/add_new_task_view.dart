@@ -47,11 +47,11 @@ class _AddNewTaskViewState extends State<AddNewTaskView> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  ColorBoxSelection(),
-                  ColorBoxSelection(),
-                  ColorBoxSelection(),
-                  ColorBoxSelection(),
-                  ColorBoxSelection(),
+                  // ColorBoxSelection(),
+                  // ColorBoxSelection(),
+                  // ColorBoxSelection(),
+                  // ColorBoxSelection(),
+                  // ColorBoxSelection(),
                 ],
               ),
             ),
@@ -98,8 +98,8 @@ class _AddNewTaskViewState extends State<AddNewTaskView> {
     );
   }
 
-  InkWell ColorBoxSelection() {
-     Color? color;
+  InkWell ColorBoxSelection(color) {
+    Color? color;
 
     return InkWell(
       onTap: () {},
