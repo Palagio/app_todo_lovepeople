@@ -1,4 +1,6 @@
 import 'package:app_todo_lovepeople/modules/auth/auth_view/auth_view.dart';
+import 'package:app_todo_lovepeople/modules/home/home_view.dart';
+import 'package:app_todo_lovepeople/modules/home/new_task/add_new_task_view.dart';
 import 'package:app_todo_lovepeople/modules/sign_up/sign_up_view.dart';
 import 'package:flutter/material.dart';
 
@@ -9,15 +11,17 @@ class AppWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-    routes: {
-         '/signUpView': (context) =>  SignUpView(),     
+      routes: {
+        '/signUpView': (context) => SignUpView(),
+        '/home': (context) => HomeView(),
+        '/add_new': (context) => AddNewTaskView(),
       },
       title: 'To Do List',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: AuthView(),
+      initialRoute: '/home',
     );
   }
 }
