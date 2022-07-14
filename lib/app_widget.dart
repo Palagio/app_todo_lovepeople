@@ -5,6 +5,7 @@ import 'package:app_todo_lovepeople/modules/sign_up/sign_up_view.dart';
 import 'package:flutter/material.dart';
 
 class AppWidget extends StatelessWidget {
+  
   const AppWidget({Key? key}) : super(key: key);
 
   @override
