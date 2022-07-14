@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class TextFormFieldWidget extends StatelessWidget {
+class NewTaskFormFieldWidget extends StatelessWidget {
   final String hintText;
   final bool obscure;
 
-  const TextFormFieldWidget(
+  const NewTaskFormFieldWidget(
       {Key? key, required this.hintText, this.obscure = false})
       : super(key: key);
 
@@ -14,10 +14,10 @@ class TextFormFieldWidget extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return SizedBox(
-      height: size.height * 0.1,
+      height: size.height * 0.9,
       width: size.width * 0.9,
       child: TextFormField(
-        obscureText: obscure,
+        maxLines: 20,
         decoration: InputDecoration(
           hintText: hintText,
           hintStyle: GoogleFonts.openSans(

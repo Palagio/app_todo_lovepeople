@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class PasswordFormFieldWidget extends StatelessWidget {
+class SearchWordsWidget extends StatelessWidget {
   final String hintText;
 
-  const PasswordFormFieldWidget({
+  const SearchWordsWidget({
     Key? key,
     required this.hintText,
   }) : super(key: key);
@@ -24,13 +24,9 @@ class PasswordFormFieldWidget extends StatelessWidget {
           obscureText: presenter.authModel.obscureTextStatus,
           decoration: InputDecoration(
             suffixIcon: InkWell(
-              onTap: () {
-                presenter.switchObscureTextStatus();
-              },
-              child: Icon(
-                presenter.authModel.obscureTextStatus
-                    ? Icons.remove_red_eye_outlined
-                    : Icons.abc,
+              onTap: () {},
+              child: const Icon(
+                Icons.search,
                 size: 20,
               ),
             ),

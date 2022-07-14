@@ -1,7 +1,7 @@
-import 'package:app_todo_lovepeople/views/widgets/password_text_field_widget.dart';
-import 'package:app_todo_lovepeople/views/widgets/text_form_field_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'widgets/password_text_field_widget.dart';
+import 'widgets/text_form_field_widget.dart';
 
 class AuthView extends StatefulWidget {
   const AuthView({Key? key}) : super(key: key);
@@ -20,7 +20,7 @@ class _AuthViewState extends State<AuthView> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 169, 1, 247),
+      backgroundColor: const Color.fromARGB(255, 169, 1, 247),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -30,7 +30,7 @@ class _AuthViewState extends State<AuthView> {
                   Container(
                     height: size.height * 0.3,
                     width: size.width * 1,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(180),
@@ -42,7 +42,7 @@ class _AuthViewState extends State<AuthView> {
                     top: size.height * 0.05,
                     left: size.width * 0.32,
                     right: size.width * 0.32,
-                    child: Container(
+                    child: SizedBox(
                       height: size.height * 0.2,
                       child: Image.asset(
                         'assets/images/shared/logo.png',
@@ -56,7 +56,7 @@ class _AuthViewState extends State<AuthView> {
                     child: Text(
                       'Lovepeople',
                       style: GoogleFonts.montserrat(
-                        textStyle: TextStyle(
+                        textStyle: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 14,
                         ),
@@ -71,7 +71,7 @@ class _AuthViewState extends State<AuthView> {
               Text(
                 'Que bom que voltou!',
                 style: GoogleFonts.montserrat(
-                  textStyle: TextStyle(
+                  textStyle: const TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 24,
                     color: Colors.white,
@@ -81,10 +81,10 @@ class _AuthViewState extends State<AuthView> {
               SizedBox(
                 height: size.height * 0.03,
               ),
-              TextFormFieldWidget(
+              const TextFormFieldWidget(
                 hintText: 'Número de telefone, email ou CPF',
               ),
-              PasswordFormFieldWidget(hintText: 'Senha'),    
+              const PasswordFormFieldWidget(hintText: 'Senha'),
             ],
           ),
         ),
