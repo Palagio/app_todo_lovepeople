@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:app_todo_lovepeople/shared/widgets/text_form_field_widget.dart';
 import 'package:app_todo_lovepeople/modules/home/widgets/app_bar_widget.dart';
 import 'package:app_todo_lovepeople/shared/widgets/new_task_form_field_widget.dart';
@@ -47,11 +49,11 @@ class _AddNewTaskViewState extends State<AddNewTaskView> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  // ColorBoxSelection(),
-                  // ColorBoxSelection(),
-                  // ColorBoxSelection(),
-                  // ColorBoxSelection(),
-                  // ColorBoxSelection(),
+                  ColorBoxSelection(0xFFF2CC),
+                  ColorBoxSelection(0xFFD9F0),
+                  ColorBoxSelection(0xE8C5FF),
+                  ColorBoxSelection(0xCAFBFF),
+                  ColorBoxSelection(0xE3FFE6),
                 ],
               ),
             ),
@@ -98,9 +100,7 @@ class _AddNewTaskViewState extends State<AddNewTaskView> {
     );
   }
 
-  InkWell ColorBoxSelection(color) {
-    Color? color;
-
+  ColorBoxSelection(int color) {
     return InkWell(
       onTap: () {},
       child: Padding(
@@ -110,7 +110,7 @@ class _AddNewTaskViewState extends State<AddNewTaskView> {
           height: 50,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: color,
+            color: Color(color).withOpacity(1),
           ),
         ),
       ),
