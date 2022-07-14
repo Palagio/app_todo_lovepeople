@@ -49,12 +49,15 @@ class _ContainerListWidgetState extends State<ContainerListWidget> {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: SizedBox(
-                  width: 25,
-                  height: 25,
-                  child: Image.asset(
-                    'assets/images/shared/trash.png',
-                    color: const Color(0xFF3101B9),
+                child: InkWell(
+                  onTap: () {},
+                  child: SizedBox(
+                    width: 25,
+                    height: 25,
+                    child: Image.asset(
+                      'assets/images/shared/trash.png',
+                      color: const Color(0xFF3101B9),
+                    ),
                   ),
                 ),
               )
