@@ -1,11 +1,9 @@
-import 'package:app_todo_lovepeople/modules/auth/auth_view/auth_view.dart';
 import 'package:app_todo_lovepeople/modules/home/home_view.dart';
 import 'package:app_todo_lovepeople/modules/home/new_task/add_new_task_view.dart';
 import 'package:app_todo_lovepeople/modules/sign_up/sign_up_view.dart';
 import 'package:flutter/material.dart';
 
 class AppWidget extends StatelessWidget {
-  
   const AppWidget({Key? key}) : super(key: key);
 
   @override
