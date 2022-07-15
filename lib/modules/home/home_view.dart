@@ -1,6 +1,8 @@
+import 'package:app_todo_lovepeople/modules/home/new_task/add_new_task_controller.dart';
 import 'package:app_todo_lovepeople/modules/home/widgets/app_bar_widget.dart';
+import 'package:app_todo_lovepeople/modules/home/widgets/container_list_widget.dart';
 import 'package:app_todo_lovepeople/modules/home/widgets/search_words_widget.dart';
-
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
 class HomeView extends StatefulWidget {
@@ -11,6 +13,12 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  @override
+  void initState() {
+    context.read<AddNewTaskController>().getTodos();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -23,19 +31,18 @@ class _HomeViewState extends State<HomeView> {
         width: size.width * 0.25,
         padding: size.width * 0.05,
       ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              const Padding(
-                padding: EdgeInsets.only(left: 25.0, right: 25, top: 25),
-                child: SearchWordsWidget(
-                  hintText: 'Busque palavras-chave',
-                ),
-              ),
-            ],
-          ),
-        ),
+      body: Consumer<AddNewTaskController>(
+        builder: (_, controller, snapshot) {
+          return ListView.builder(
+              itemCount: controller.listTodos.length,
+              itemBuilder: (context, index) {
+                return ContainerListWidget(
+                    size: size,
+                    title: controller.listTodos[index].title,
+                    description: controller.listTodos[index].description,
+                    color: controller.listTodos[index].color);
+              });
+        },
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(8.0),

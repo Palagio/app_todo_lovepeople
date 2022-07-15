@@ -11,7 +11,10 @@ class NewTaskRepositoryImpl implements NewTaskRepository {
     var url = Uri.parse('https://todo-lovepeople.herokuapp.com/todos');
 
     List<NewTaskModel> listTodos = [];
-    final result = await http.get(url);
+    final result = await http.get(url, headers: {
+      "Authorization":
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTM2LCJpYXQiOjE2NTc5MTAxMTksImV4cCI6MTY2MDUwMjExOX0.ZSNNbYk8OrG1jNJTMYBMRAQDYDPp84FKxddxoWA_ZDw"
+    });
 
     if (result.statusCode == 200) {
       Map json = const JsonDecoder().convert(result.body);
@@ -26,8 +29,22 @@ class NewTaskRepositoryImpl implements NewTaskRepository {
   }
 
   @override
-  Future<NewTaskModel> postTodos(String title, String description, Color color) {
-    
+  Future<NewTaskModel> postTodos(
+      String title, String description, Color color) async {
+    var url = Uri.parse('https://todo-lovepeople.herokuapp.com/todos');
+    http.post(
+      url,
+      body: {
+        "title": title,
+        "description": description,
+        "color": color,
+      },
+      headers: {
+        "Authorization":
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTM2LCJpYXQiOjE2NTc5MTAxMTksImV4cCI6MTY2MDUwMjExOX0.ZSNNbYk8OrG1jNJTMYBMRAQDYDPp84FKxddxoWA_ZDw"
+      },
+    );
+
     throw UnimplementedError();
   }
 }
