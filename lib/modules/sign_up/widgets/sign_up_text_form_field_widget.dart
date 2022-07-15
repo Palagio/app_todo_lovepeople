@@ -1,7 +1,5 @@
-import 'package:app_todo_lovepeople/modules/sign_up/sign_up_presenter.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class SignUpUserTextFormFieldWidget extends StatelessWidget {
   final String hintText;

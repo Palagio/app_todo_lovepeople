@@ -52,7 +52,7 @@ class SignUpView extends StatelessWidget {
                   height: size.height * 0.03,
                 ),
                 SignUpPasswordTextFormFieldWidget(
-                  inputPassword: presenter.setPassword,
+                  onChanged: presenter.setPassword,
                   status: presenter.signUpModel.obscurePasswordStatus,
                   toggleStatus: presenter.toggle,
                   hintText: 'Senha',
@@ -61,17 +61,19 @@ class SignUpView extends StatelessWidget {
                   height: size.height * 0.03,
                 ),
                 SignUpPasswordTextFormFieldWidget(
+                  onChanged: presenter.setConfirmPassword,
                   status: presenter.signUpModel.obscurePasswordConfirmStatus,
                   toggleStatus: presenter.toggle,
                   hintText: 'Confirmar senha',
-                  inputPassword: presenter.setConfirmPassword,
                 ),
                 SizedBox(
                   height: size.height * 0.05,
                 ),
                 DynamicButtonWidget(
                   onTap: () {
-                    print(presenter.signUpModel.username);
+                    presenter.validateUsername(presenter.signUpModel.username);
+                    print(presenter.signUpModel.isUsernameSignupValid);
+                    // presenter.postData();
                   },
                   text: 'Cadastrar',
                   buttonColor: Color.fromARGB(255, 50, 1, 185),

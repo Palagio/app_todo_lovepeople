@@ -5,14 +5,14 @@ import 'package:google_fonts/google_fonts.dart';
 class SignUpPasswordTextFormFieldWidget extends StatelessWidget {
   final String hintText;
   final SignUpBoolValue status;
-  final Function(String) inputPassword;
+  final Function(String)? onChanged;
   final Function(SignUpBoolValue) toggleStatus;
   SignUpPasswordTextFormFieldWidget({
     Key? key,
     required this.hintText,
     required this.status,
     required this.toggleStatus,
-    required this.inputPassword,
+    required this.onChanged, 
   }) : super(key: key);
 
   @override
@@ -27,6 +27,7 @@ class SignUpPasswordTextFormFieldWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
       ),
       child: TextFormField(
+        onChanged: onChanged,
         style: GoogleFonts.openSans(
           textStyle: TextStyle(
             fontSize: 17,
