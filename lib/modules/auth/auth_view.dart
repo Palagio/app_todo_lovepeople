@@ -2,7 +2,7 @@ import 'package:app_todo_lovepeople/modules/auth/auth_presenter.dart';
 import 'package:app_todo_lovepeople/shared/widgets/text_button_widget.dart';
 import 'package:app_todo_lovepeople/shared/widgets/dynamic-button_widget.dart';
 import 'package:app_todo_lovepeople/shared/widgets/password_text_field_widget.dart';
-import 'package:app_todo_lovepeople/shared/widgets/text_form_field_widget.dart';
+import 'package:app_todo_lovepeople/modules/auth/widgets/auth_text_form_field_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -82,7 +82,7 @@ class _AuthViewState extends State<AuthView> {
                 SizedBox(
                   height: size.height * 0.03,
                 ),
-                UserTextFormFieldWidget(
+                AuthUserTextFormFieldWidget(
                   hintText: 'Número de telefone, email ou CPF',
                 ),
                 SizedBox(
@@ -100,58 +100,24 @@ class _AuthViewState extends State<AuthView> {
                   marginRight: size.width * 0.18,
                 ),
                 SizedBox(
-                  height: size.height * 0.05,
+                  height: size.height * 0.08,
                 ),
                 DynamicButtonWidget(
+                  onTap: (){},
                   text: 'Entrar',
                   buttonColor: Color.fromARGB(255, 50, 1, 185),
                   width: size.width * 0.3,
                   radius: 15,
                 ),
-                SizedBox(height: size.height * 0.07),
+                SizedBox(
+                  height: size.height * 0.07,
+                ),
                 TextButtonWidget(
                   route: '',
                   marginRight: 0,
                   text: 'Não possui cadastro? ',
                   buttonText: 'Clique aqui',
                 ),
-                InkWell(
-                    child: Container(
-                      height: 50,
-                      width: 50,
-                      color: Colors.amber,
-                    ),
-                    onTap: () {
-                      showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              content: Container(
-                                padding: EdgeInsets.zero,
-                                width: size.width * 0.85,
-                                height: size.height * 0.1,
-                                child: Stack(
-                                  children: [
-                                    Positioned(
-                                      top: size.height * 0.005,
-                                      child: Text(
-                                        'Deseja deletar esse item?',
-                                        style: GoogleFonts.montserrat(
-                                          textStyle: TextStyle(
-                                            color:
-                                                Color.fromARGB(255, 50, 1, 185),
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            );
-                          });
-                    }),
               ],
             );
           }),

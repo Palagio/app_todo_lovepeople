@@ -1,8 +1,8 @@
-import 'package:app_todo_lovepeople/modules/auth/auth_presenter.dart';
+import 'package:app_todo_lovepeople/modules/sign_up/sign_up_presenter.dart';
+import 'package:app_todo_lovepeople/modules/sign_up/widgets/sign_up_password_text_field_widget.dart';
+import 'package:app_todo_lovepeople/modules/sign_up/widgets/sign_up_text_form_field_widget.dart';
 import 'package:app_todo_lovepeople/shared/widgets/text_button_widget.dart';
 import 'package:app_todo_lovepeople/shared/widgets/dynamic-button_widget.dart';
-import 'package:app_todo_lovepeople/shared/widgets/password_text_field_widget.dart';
-import 'package:app_todo_lovepeople/shared/widgets/text_form_field_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -14,7 +14,7 @@ class SignUpView extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    return Consumer<AuthPresenter>(builder: (context, presenter, child) {
+    return Consumer<SignUpPresenter>(builder: (context, presenter, child) {
       return Scaffold(
         backgroundColor: Color.fromARGB(255, 169, 1, 247),
         body: SafeArea(
@@ -37,35 +37,42 @@ class SignUpView extends StatelessWidget {
                 SizedBox(
                   height: size.height * 0.03,
                 ),
-                UserTextFormFieldWidget(
+                SignUpUserTextFormFieldWidget(
+                  onChanged: presenter.setUsername,
                   hintText: 'Nome',
                 ),
                 SizedBox(
                   height: size.height * 0.03,
                 ),
-                UserTextFormFieldWidget(
+                SignUpUserTextFormFieldWidget(
+                  onChanged: presenter.setNumberEmailCpf,
                   hintText: 'Número de telefone, email ou CPF',
                 ),
                 SizedBox(
                   height: size.height * 0.03,
                 ),
-                PasswordTextFormFieldWidget(
-                  status: presenter.authModel.obscurePasswordStatus,
+                SignUpPasswordTextFormFieldWidget(
+                  inputPassword: presenter.setPassword,
+                  status: presenter.signUpModel.obscurePasswordStatus,
                   toggleStatus: presenter.toggle,
                   hintText: 'Senha',
                 ),
                 SizedBox(
                   height: size.height * 0.03,
                 ),
-                PasswordTextFormFieldWidget(
-                  status: presenter.authModel.obscurePasswordConfirmStatus,
+                SignUpPasswordTextFormFieldWidget(
+                  status: presenter.signUpModel.obscurePasswordConfirmStatus,
                   toggleStatus: presenter.toggle,
                   hintText: 'Confirmar senha',
+                  inputPassword: presenter.setConfirmPassword,
                 ),
                 SizedBox(
                   height: size.height * 0.05,
                 ),
                 DynamicButtonWidget(
+                  onTap: () {
+                    print(presenter.signUpModel.username);
+                  },
                   text: 'Cadastrar',
                   buttonColor: Color.fromARGB(255, 50, 1, 185),
                   width: size.width * 0.45,
@@ -79,7 +86,7 @@ class SignUpView extends StatelessWidget {
                   marginRight: 0,
                   text: 'Já possui cadastro? ',
                   buttonText: 'Entrar',
-                )
+                ),
               ],
             ),
           ),

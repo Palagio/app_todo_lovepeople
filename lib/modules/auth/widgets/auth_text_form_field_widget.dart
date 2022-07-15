@@ -3,14 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class UserTextFormFieldWidget extends StatelessWidget {
+class AuthUserTextFormFieldWidget extends StatelessWidget {
   final String hintText;
 
-
-  UserTextFormFieldWidget({
+  AuthUserTextFormFieldWidget({
     Key? key,
     required this.hintText,
-
   }) : super(key: key);
 
   @override
@@ -26,7 +24,6 @@ class UserTextFormFieldWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
         ),
         child: TextFormField(
-   
           style: GoogleFonts.openSans(
             textStyle: TextStyle(
               fontSize: 17,

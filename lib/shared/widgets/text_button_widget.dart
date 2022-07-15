@@ -35,7 +35,7 @@ class TextButtonWidget extends StatelessWidget {
             ),
           ),
           GestureDetector(
-            onTap: () => Navigator.pushNamed(context, '/signUpView'),
+            onTap: () => Navigator.pushNamed(context, '/sign_up_view'),
             child: Container(
               child: Text(
                 buttonText,
