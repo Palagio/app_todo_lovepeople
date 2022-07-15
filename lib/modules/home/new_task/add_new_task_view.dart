@@ -1,7 +1,6 @@
 import 'package:app_todo_lovepeople/modules/home/widgets/app_bar_widget.dart';
 import 'package:app_todo_lovepeople/shared/widgets/new_task_form_field_widget.dart';
 import 'package:app_todo_lovepeople/shared/widgets/text_form_field_widget.dart';
-
 import 'package:flutter/material.dart';
 
 class AddNewTaskView extends StatefulWidget {
@@ -12,6 +11,13 @@ class AddNewTaskView extends StatefulWidget {
 }
 
 class _AddNewTaskViewState extends State<AddNewTaskView> {
+  final TextEditingController _titleEC = TextEditingController();
+  final TextEditingController _descriptionEC = TextEditingController();
+
+  String title = '';
+  String description = '';
+  int color = 0;
+  // final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -23,40 +29,44 @@ class _AddNewTaskViewState extends State<AddNewTaskView> {
         width: size.width * 0.25,
         padding: size.width * 0.05,
       ),
-      body: Stack(
-        children: [
-          Positioned(
-            top: size.height * 0.05,
-            left: size.width * 0.05,
-            child: UserTextFormFieldWidget(
-              hintText: 'Título da Tarefa',
-            ),
-          ),
-          Positioned(
-            top: size.height * 0.135,
-            left: size.width * 0.05,
-            child: const NewTaskFormFieldWidget(
-              hintText: 'Escreva uma descrição para sua tarefa.',
-            ),
-          ),
-          Positioned(
-            top: size.height * 0.63,
-            left: size.width * 0.01,
-            child: Container(
-              width: 400,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  // ColorBoxSelection(),
-                  // ColorBoxSelection(),
-                  // ColorBoxSelection(),
-                  // ColorBoxSelection(),
-                  // ColorBoxSelection(),
-                ],
+      body: Form(
+        child: Stack(
+          children: [
+            Positioned(
+              top: size.height * 0.05,
+              left: size.width * 0.05,
+              child: UserTextFormFieldWidget(
+                controller: _titleEC,
+                hintText: 'Título da Tarefa',
               ),
             ),
-          )
-        ],
+            Positioned(
+              top: size.height * 0.135,
+              left: size.width * 0.05,
+              child: NewTaskFormFieldWidget(
+                controller: _descriptionEC,
+                hintText: 'Escreva uma descrição para sua tarefa.',
+              ),
+            ),
+            Positioned(
+              top: size.height * 0.63,
+              left: size.width * 0.01,
+              child: Container(
+                width: 400,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ColorBoxSelection(0xFFF2CC),
+                    ColorBoxSelection(0xFFD9F0),
+                    ColorBoxSelection(0xE8C5FF),
+                    ColorBoxSelection(0xCAFBFF),
+                    ColorBoxSelection(0xE3FFE6),
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
       ),
       bottomNavigationBar: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -84,10 +94,11 @@ class _AddNewTaskViewState extends State<AddNewTaskView> {
               height: 50,
               child: InkWell(
                 onTap: () {
-                  Navigator.pushNamed(context, '/add_new');
+                  title = _titleEC.text;
+                  description = _descriptionEC.text;
                 },
                 child: Image.asset(
-                  'assets/images/shared/cross.png',
+                  'assets/images/shared/verify.png',
                   color: const Color(0xFFFFFFFF),
                 ),
               ),
@@ -98,9 +109,7 @@ class _AddNewTaskViewState extends State<AddNewTaskView> {
     );
   }
 
-  InkWell ColorBoxSelection(color) {
-    Color? color;
-
+  ColorBoxSelection(int color) {
     return InkWell(
       onTap: () {},
       child: Padding(
@@ -110,7 +119,7 @@ class _AddNewTaskViewState extends State<AddNewTaskView> {
           height: 50,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: color,
+            color: Color(color).withOpacity(1),
           ),
         ),
       ),
