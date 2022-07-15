@@ -38,9 +38,10 @@ class _HomeViewState extends State<HomeView> {
               itemBuilder: (context, index) {
                 return ContainerListWidget(
                     size: size,
-                    title: controller.listTodos[index].title,
-                    description: controller.listTodos[index].description,
-                    color: controller.listTodos[index].color);
+                    title: controller.listTodos[index].title.toString(),
+                    description:
+                        controller.listTodos[index].description.toString(),
+                    color: Color.fromARGB(255, 0, 255, 255));
               });
         },
       ),
