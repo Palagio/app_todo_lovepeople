@@ -27,22 +27,25 @@ class NewTaskRepository {
     return listTodo;
   }
 
-  Future<NewTaskModel> postTodos(
-      String title, String description, int color) async {
+  Future<NewTaskModel> postTodos({Map? body}) async {
     var url = Uri.parse('https://todo-lovepeople.herokuapp.com/todos');
-    http.post(
+    final body1 = jsonEncode(body);
+    String token =
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTM2LCJpYXQiOjE2NTc5MTAxMTksImV4cCI6MTY2MDUwMjExOX0.ZSNNbYk8OrG1jNJTMYBMRAQDYDPp84FKxddxoWA_ZDw';
+    return http.post(
       url,
-      body: {
-        "title": title,
-        "description": description,
-        "color": color,
-      },
+      body: body1,
       headers: {
-        "Authorization":
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTM2LCJpYXQiOjE2NTc5MTAxMTksImV4cCI6MTY2MDUwMjExOX0.ZSNNbYk8OrG1jNJTMYBMRAQDYDPp84FKxddxoWA_ZDw"
+        'Content-type': 'application/json',
+        "Authorization": "Bearer $token"
       },
-    );
+    ).then((http.Response response) {
+      final int statusCode = response.statusCode;
 
-    throw UnimplementedError();
+      if (statusCode < 200 || statusCode > 400) {
+        throw Exception('Erro ao enviar');
+      }
+      return NewTaskModel.fromJson(json.decode(response.body));
+    });
   }
 }

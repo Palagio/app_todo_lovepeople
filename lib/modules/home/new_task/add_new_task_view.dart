@@ -98,9 +98,9 @@ class _AddNewTaskViewState extends State<AddNewTaskView> {
                   child: InkWell(
                     onTap: () {
                       controller.postTodos(
-                        _titleEC.toString(),
-                        _descriptionEC.toString(),
-                        _colorEC,
+                        _titleEC.text.toString(),
+                        _descriptionEC.text.toString(),
+                        _colorEC.toString(),
                       );
                     },
                     child: Image.asset(

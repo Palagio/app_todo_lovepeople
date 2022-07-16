@@ -9,7 +9,7 @@ class UserTextFormFieldWidget extends StatelessWidget {
 
   UserTextFormFieldWidget({
     Key? key,
-    required this.hintText, 
+    required this.hintText,
     this.controller,
   }) : super(key: key);
 
@@ -26,6 +26,7 @@ class UserTextFormFieldWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
         ),
         child: TextFormField(
+          controller: controller,
           style: GoogleFonts.openSans(
             textStyle: TextStyle(
               fontSize: 17,

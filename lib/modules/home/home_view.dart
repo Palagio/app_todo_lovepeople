@@ -36,7 +36,8 @@ class _HomeViewState extends State<HomeView> {
           return ListView.builder(
               itemCount: controller.listTodos.length,
               itemBuilder: (context, index) {
-                String cor = controller.listTodos[index].color.replaceAll(RegExp(r'[#]'), '');
+                String cor = controller.listTodos[index].color
+                    .replaceAll(RegExp(r'[/#/]'), '');
                 int color = int.parse(cor);
 
                 return ContainerListWidget(
