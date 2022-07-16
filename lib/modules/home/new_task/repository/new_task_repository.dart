@@ -20,8 +20,6 @@ class NewTaskRepository {
       for (var e in json) {
         listTodo.add(NewTaskModel.fromJson(e));
       }
-
-      return listTodo;
     }
 
     return listTodo;

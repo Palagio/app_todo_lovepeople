@@ -5,14 +5,14 @@ class SearchWordsWidget extends StatelessWidget {
   final String hintText;
   final Size size;
   final TextEditingController controller;
-  final ValueChanged<String>? onChange;
+  final ValueChanged<String>? onChanged;
 
   const SearchWordsWidget({
     Key? key,
     required this.hintText,
-    required this.size, 
-    required this.controller, 
-    this.onChange,
+    required this.size,
+    required this.controller,
+    this.onChanged,
   }) : super(key: key);
 
   @override
@@ -21,7 +21,7 @@ class SearchWordsWidget extends StatelessWidget {
     return SizedBox(
       height: size.height * 0.06,
       width: size.width * 0.9,
-      child: TextFormField(
+      child: TextField(
         controller: controller,
         decoration: InputDecoration(
           suffixIcon: InkWell(
@@ -47,7 +47,7 @@ class SearchWordsWidget extends StatelessWidget {
           filled: true,
           fillColor: Colors.white,
         ),
-        onChanged: onChange,
+        onChanged: onChanged,
       ),
     );
   }

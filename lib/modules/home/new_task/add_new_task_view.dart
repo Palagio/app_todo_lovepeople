@@ -96,12 +96,14 @@ class _AddNewTaskViewState extends State<AddNewTaskView> {
                   height: 50,
                   child: InkWell(
                     onTap: () {
-                      controller.postTodos(
-                        _titleEC.text.toString(),
-                        _descriptionEC.text.toString(),
-                        _colorEC.toString(),
-                      );
-                      Navigator.pop(context);
+                      setState(() {
+                        controller.postTodos(
+                          _titleEC.text.toString(),
+                          _descriptionEC.text.toString(),
+                          _colorEC.toString(),
+                        );
+                        Navigator.pop(context);
+                      });
                     },
                     child: Image.asset(
                       'assets/images/shared/verify.png',

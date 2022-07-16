@@ -15,16 +15,25 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  final _controller = TextEditingController();
+  String? _searchText;
+
   @override
   void initState() {
     context.read<AddNewTaskController>().getTodos();
+
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final TextEditingController _search = TextEditingController();
 
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 169, 1, 247),
@@ -37,29 +46,38 @@ class _HomeViewState extends State<HomeView> {
       body: Column(
         children: [
           SearchWordsWidget(
-            hintText: 'Busque palavras-chave',
+            hintText: 'Procurar',
             size: size,
-            controller: _search,
-            onChange: searchTodo,
+            controller: _controller,
+            onChanged: (value) {
+              Provider.of<AddNewTaskController>(context, listen: false)
+                  .changeSearchString(value);
+            },
           ),
           Expanded(
             child: Consumer<AddNewTaskController>(
               builder: (_, controller, snapshot) {
+                final todo = controller.listTodos;
+
+                if (todo.isEmpty) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
                 return ListView.builder(
-                    itemCount: controller.listTodos.length,
-                    itemBuilder: (context, index) {
-                      String cor = controller.listTodos[index].color;
-                      int color = int.parse(cor);
-                      final corHex = color.toRadixString(16);
-                      return ContainerListWidget(
-                          size: size,
-                          title: controller.listTodos[index].title.toString(),
-                          description: controller.listTodos[index].description
-                              .toString(),
-                          color: HexColor.fromHex(corHex));
-                          
-                    });
-                    
+                  shrinkWrap: true,
+                  itemCount: todo.length,
+                  itemBuilder: (context, index) {
+                    String cor = todo[index].color;
+                    int color = int.parse(cor);
+                    final corHex = color.toRadixString(16);
+                    return ContainerListWidget(
+                        size: size,
+                        title: todo[index].title.toString(),
+                        description: todo[index].description.toString(),
+                        color: HexColor.fromHex(corHex));
+                  },
+                );
               },
             ),
           ),
@@ -82,11 +100,6 @@ class _HomeViewState extends State<HomeView> {
         ),
       ),
     );
-  }
-
-  
-
-  void searchTodo(String value) {
   }
 }
 

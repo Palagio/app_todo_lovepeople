@@ -15,7 +15,7 @@ void main() {
         ChangeNotifierProvider(
           create: (context) => AuthPresenter(AuthModel()),
         ),
-        ChangeNotifierProvider(
+        ChangeNotifierProvider<AddNewTaskController>(
           create: (context) => AddNewTaskController(repository),
         ),
       ],
