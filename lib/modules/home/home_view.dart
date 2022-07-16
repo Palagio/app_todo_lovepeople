@@ -1,6 +1,7 @@
 import 'package:app_todo_lovepeople/modules/home/new_task/add_new_task_controller.dart';
 import 'package:app_todo_lovepeople/modules/home/widgets/app_bar_widget.dart';
 import 'package:app_todo_lovepeople/modules/home/widgets/container_list_widget.dart';
+import 'package:app_todo_lovepeople/modules/home/widgets/search_words_widget.dart';
 
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
@@ -36,16 +37,15 @@ class _HomeViewState extends State<HomeView> {
           return ListView.builder(
               itemCount: controller.listTodos.length,
               itemBuilder: (context, index) {
-                String cor = controller.listTodos[index].color
-                    .replaceAll(RegExp(r'[/#/]'), '');
+                String cor = controller.listTodos[index].color;
                 int color = int.parse(cor);
-
+                final corHex = color.toRadixString(16);
                 return ContainerListWidget(
                     size: size,
                     title: controller.listTodos[index].title.toString(),
                     description:
                         controller.listTodos[index].description.toString(),
-                    color: Color(color));
+                    color: HexColor.fromHex(corHex));
               });
         },
       ),
@@ -66,5 +66,15 @@ class _HomeViewState extends State<HomeView> {
         ),
       ),
     );
+  }
+}
+
+class HexColor {
+  static Color fromHex(String hexString) {
+    final buffer = StringBuffer();
+    if (hexString.length <= 7) buffer.write('ff');
+    buffer.write(hexString.replaceFirst('#', ''));
+
+    return Color(int.parse(buffer.toString(), radix: 16));
   }
 }

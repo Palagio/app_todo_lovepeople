@@ -1,5 +1,4 @@
 import 'package:app_todo_lovepeople/modules/home/new_task/add_new_task_controller.dart';
-import 'package:app_todo_lovepeople/modules/home/new_task/repository/new_task_repository.dart';
 import 'package:app_todo_lovepeople/shared/widgets/text_form_field_widget.dart';
 import 'package:app_todo_lovepeople/modules/home/widgets/app_bar_widget.dart';
 import 'package:app_todo_lovepeople/shared/widgets/new_task_form_field_widget.dart';
@@ -102,6 +101,7 @@ class _AddNewTaskViewState extends State<AddNewTaskView> {
                         _descriptionEC.text.toString(),
                         _colorEC.toString(),
                       );
+                      Navigator.pop(context);
                     },
                     child: Image.asset(
                       'assets/images/shared/verify.png',

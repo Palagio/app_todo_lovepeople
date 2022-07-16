@@ -3,10 +3,11 @@ import 'package:google_fonts/google_fonts.dart';
 
 class SearchWordsWidget extends StatelessWidget {
   final String hintText;
+  final Size size;
 
   const SearchWordsWidget({
     Key? key,
-    required this.hintText,
+    required this.hintText, required this.size,
   }) : super(key: key);
 
   @override
