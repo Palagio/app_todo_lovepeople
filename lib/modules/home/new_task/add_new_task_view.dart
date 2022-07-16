@@ -1,7 +1,10 @@
+import 'package:app_todo_lovepeople/modules/home/new_task/add_new_task_controller.dart';
+import 'package:app_todo_lovepeople/modules/home/new_task/repository/new_task_repository.dart';
 import 'package:app_todo_lovepeople/shared/widgets/text_form_field_widget.dart';
 import 'package:app_todo_lovepeople/modules/home/widgets/app_bar_widget.dart';
 import 'package:app_todo_lovepeople/shared/widgets/new_task_form_field_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AddNewTaskView extends StatefulWidget {
   const AddNewTaskView({Key? key}) : super(key: key);
@@ -13,10 +16,8 @@ class AddNewTaskView extends StatefulWidget {
 class _AddNewTaskViewState extends State<AddNewTaskView> {
   final TextEditingController _titleEC = TextEditingController();
   final TextEditingController _descriptionEC = TextEditingController();
+  late final int _colorEC;
 
-  String title = '';
-  String description = '';
-  int color = 0;
   // final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -87,22 +88,29 @@ class _AddNewTaskViewState extends State<AddNewTaskView> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: SizedBox(
-              width: 50,
-              height: 50,
-              child: InkWell(
-                onTap: () {
-                  title = _titleEC.text;
-                  description = _descriptionEC.text;
-                },
-                child: Image.asset(
-                  'assets/images/shared/verify.png',
-                  color: const Color(0xFFFFFFFF),
+          Consumer<AddNewTaskController>(
+            builder: ((context, controller, _) {
+              return Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: SizedBox(
+                  width: 50,
+                  height: 50,
+                  child: InkWell(
+                    onTap: () {
+                      controller.postTodos(
+                        _titleEC.toString(),
+                        _descriptionEC.toString(),
+                        _colorEC,
+                      );
+                    },
+                    child: Image.asset(
+                      'assets/images/shared/verify.png',
+                      color: const Color(0xFFFFFFFF),
+                    ),
+                  ),
                 ),
-              ),
-            ),
+              );
+            }),
           ),
         ],
       ),
@@ -111,7 +119,9 @@ class _AddNewTaskViewState extends State<AddNewTaskView> {
 
   ColorBoxSelection(int color) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        _colorEC = color;
+      },
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(

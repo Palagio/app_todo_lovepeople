@@ -1,7 +1,7 @@
 import 'package:app_todo_lovepeople/modules/home/new_task/add_new_task_controller.dart';
 import 'package:app_todo_lovepeople/modules/home/widgets/app_bar_widget.dart';
 import 'package:app_todo_lovepeople/modules/home/widgets/container_list_widget.dart';
-import 'package:app_todo_lovepeople/modules/home/widgets/search_words_widget.dart';
+
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
@@ -36,12 +36,15 @@ class _HomeViewState extends State<HomeView> {
           return ListView.builder(
               itemCount: controller.listTodos.length,
               itemBuilder: (context, index) {
+                String cor = controller.listTodos[index].color.replaceAll(RegExp(r'[#]'), '');
+                int color = int.parse(cor);
+
                 return ContainerListWidget(
                     size: size,
                     title: controller.listTodos[index].title.toString(),
                     description:
                         controller.listTodos[index].description.toString(),
-                    color: Color.fromARGB(255, 0, 255, 255));
+                    color: Color(color));
               });
         },
       ),

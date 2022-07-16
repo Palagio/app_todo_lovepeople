@@ -14,4 +14,9 @@ class AddNewTaskController extends ChangeNotifier {
     listTodos = await repository.getTodos();
     notifyListeners();
   }
+
+  void postTodos(String title, String description, int color) async {
+    repository.postTodos(title, description, color);
+    notifyListeners();
+  }
 }
