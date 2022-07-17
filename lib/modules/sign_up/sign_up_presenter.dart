@@ -38,14 +38,15 @@ class SignUpPresenter with ChangeNotifier {
     }
   }
 
-  setUsername(String value) => signUpModel.username = value;
-
   validateSignUp() {
+    validateUsername();
+    validateEmail();
+    validatePassword();
     if (signUpModel.isEmailValid == true &&
         signUpModel.isUsernameSignupValid == true &&
         signUpModel.isPasswordValid == true) {
-      return postUserData();
-    }
+      return signUpModel.isSignUpValid = true;
+    } 
   }
 
   validatePassword() {
@@ -54,7 +55,6 @@ class SignUpPresenter with ChangeNotifier {
         signUpModel.password.length >= 5) {
       return {
         signUpModel.isPasswordValid = true,
-       
       };
     } else {
       return false;
@@ -76,6 +76,8 @@ class SignUpPresenter with ChangeNotifier {
       signUpModel.isUsernameSignupValid = true,
     };
   }
+
+  setUsername(String value) => signUpModel.username = value;
 
   setNumberEmailCpf(String value) => signUpModel.email = value;
 

@@ -71,10 +71,26 @@ class SignUpView extends StatelessWidget {
                 ),
                 DynamicButtonWidget(
                   onTap: () {
-                    presenter.validateUsername();
-                    presenter.validateEmail();
-                    presenter.validatePassword();
-                    presenter.validateSignUp();
+                    if (presenter.signUpModel.isSignUpValid == true) {
+                      presenter.validateSignUp();
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            'Algo deu errado, revise as informações.',
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.openSans(
+                              textStyle: TextStyle(
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
+                          duration: Duration(
+                            seconds: 3,
+                          ),
+                        ),
+                      );
+                    }
                   },
                   text: 'Cadastrar',
                   buttonColor: Color.fromARGB(255, 50, 1, 185),

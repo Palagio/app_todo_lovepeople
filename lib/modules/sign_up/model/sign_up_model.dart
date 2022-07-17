@@ -11,6 +11,8 @@ class SignUpModel {
 
   bool isSignUpValid = false;
 
+  bool isSignUpButtonLoading = false;
+
   String username = '';
 
   String email = '';
