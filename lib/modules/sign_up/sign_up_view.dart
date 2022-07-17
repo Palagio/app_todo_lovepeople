@@ -71,9 +71,10 @@ class SignUpView extends StatelessWidget {
                 ),
                 DynamicButtonWidget(
                   onTap: () {
-                    presenter.validateUsername(presenter.signUpModel.username);
-                    print(presenter.signUpModel.isUsernameSignupValid);
-                    // presenter.postData();
+                    presenter.validateUsername();
+                    presenter.validateEmail();
+                    presenter.validatePassword();
+                    presenter.validateSignUp();
                   },
                   text: 'Cadastrar',
                   buttonColor: Color.fromARGB(255, 50, 1, 185),
