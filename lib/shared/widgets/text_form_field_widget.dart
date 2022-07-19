@@ -1,16 +1,19 @@
-import 'package:app_todo_lovepeople/modules/auth/auth_presenter.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import 'package:app_todo_lovepeople/modules/auth/auth_presenter.dart';
+
 class UserTextFormFieldWidget extends StatelessWidget {
   final String hintText;
   final TextEditingController? controller;
+  final FormFieldValidator<String>? validator;
 
   UserTextFormFieldWidget({
     Key? key,
     required this.hintText,
     this.controller,
+    this.validator,
   }) : super(key: key);
 
   @override
@@ -27,6 +30,7 @@ class UserTextFormFieldWidget extends StatelessWidget {
         ),
         child: TextFormField(
           controller: controller,
+          validator: validator,
           style: GoogleFonts.openSans(
             textStyle: TextStyle(
               fontSize: 17,

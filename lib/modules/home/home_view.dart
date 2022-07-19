@@ -1,7 +1,5 @@
 import 'package:app_todo_lovepeople/modules/home/new_task/add_new_task_controller.dart';
-import 'package:app_todo_lovepeople/modules/home/new_task/new_task_model.dart';
 import 'package:app_todo_lovepeople/modules/home/widgets/app_bar_widget.dart';
-import 'package:app_todo_lovepeople/modules/home/widgets/container_list_widget.dart';
 import 'package:app_todo_lovepeople/modules/home/widgets/search_words_widget.dart';
 
 import 'package:provider/provider.dart';
@@ -16,12 +14,20 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   final _controller = TextEditingController();
-  String? _searchText;
+
+  String? searchText;
 
   @override
   void initState() {
+    
     context.read<AddNewTaskController>().getTodos();
-
+    _controller.addListener(
+      () {
+        setState(() {
+          searchText = _controller.text;
+        });
+      },
+    );
     super.initState();
   }
 
@@ -56,30 +62,29 @@ class _HomeViewState extends State<HomeView> {
           ),
           Expanded(
             child: Consumer<AddNewTaskController>(
-              builder: (_, controller, snapshot) {
-                final todo = controller.listTodos;
-
-                if (todo.isEmpty) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
+                builder: (_, controller, snapshot) {
+              final todo = controller.listTodos.toList();
+              final filtro = todo;
+              if (filtro.isNotEmpty) {
                 return ListView.builder(
                   shrinkWrap: true,
-                  itemCount: todo.length,
+                  itemCount: filtro.length,
                   itemBuilder: (context, index) {
-                    String cor = todo[index].color;
+                    String cor = filtro[index].color;
                     int color = int.parse(cor);
                     final corHex = color.toRadixString(16);
-                    return ContainerListWidget(
-                        size: size,
-                        title: todo[index].title.toString(),
-                        description: todo[index].description.toString(),
+                    return Card(
+                        child: ListTile(
+                          title: Text(filtro[index].title),
+                          subtitle: Text(filtro[index].description),
+                        ),
                         color: HexColor.fromHex(corHex));
                   },
                 );
-              },
-            ),
+              } else {
+                return Text('Sem resultados');
+              }
+            }),
           ),
         ],
       ),
@@ -89,8 +94,9 @@ class _HomeViewState extends State<HomeView> {
           width: 50,
           height: 50,
           child: InkWell(
-            onTap: () {
-              Navigator.pushNamed(context, '/add_new');
+            onTap: () async {
+              await Navigator.pushNamed(context, '/add_new');
+              setState(() {});
             },
             child: Image.asset(
               'assets/images/shared/plus.png',

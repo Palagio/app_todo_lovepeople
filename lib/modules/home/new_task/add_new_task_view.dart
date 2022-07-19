@@ -4,6 +4,7 @@ import 'package:app_todo_lovepeople/modules/home/widgets/app_bar_widget.dart';
 import 'package:app_todo_lovepeople/shared/widgets/new_task_form_field_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:validatorless/validatorless.dart';
 
 class AddNewTaskView extends StatefulWidget {
   const AddNewTaskView({Key? key}) : super(key: key);
@@ -13,9 +14,10 @@ class AddNewTaskView extends StatefulWidget {
 }
 
 class _AddNewTaskViewState extends State<AddNewTaskView> {
+  final _formKey = GlobalKey<FormState>();
   final TextEditingController _titleEC = TextEditingController();
   final TextEditingController _descriptionEC = TextEditingController();
-  late final int _colorEC;
+  int? _colorEC;
 
   // final _formKey = GlobalKey<FormState>();
   @override
@@ -30,6 +32,7 @@ class _AddNewTaskViewState extends State<AddNewTaskView> {
         padding: size.width * 0.05,
       ),
       body: Form(
+        key: _formKey,
         child: Stack(
           children: [
             Positioned(
@@ -38,6 +41,7 @@ class _AddNewTaskViewState extends State<AddNewTaskView> {
               child: UserTextFormFieldWidget(
                 controller: _titleEC,
                 hintText: 'Título da Tarefa',
+                validator: Validatorless.required('Título obrigatório'),
               ),
             ),
             Positioned(
@@ -46,6 +50,7 @@ class _AddNewTaskViewState extends State<AddNewTaskView> {
               child: NewTaskFormFieldWidget(
                 controller: _descriptionEC,
                 hintText: 'Escreva uma descrição para sua tarefa.',
+                validator: Validatorless.required('Descrição obrigatória'),
               ),
             ),
             Positioned(
@@ -96,14 +101,16 @@ class _AddNewTaskViewState extends State<AddNewTaskView> {
                   height: 50,
                   child: InkWell(
                     onTap: () {
-                      setState(() {
+                      final formValid =
+                          _formKey.currentState?.validate() ?? false;
+                      if (formValid && _colorEC != null) {
                         controller.postTodos(
-                          _titleEC.text.toString(),
-                          _descriptionEC.text.toString(),
+                          _titleEC.text,
+                          _descriptionEC.text,
                           _colorEC.toString(),
                         );
-                        Navigator.pop(context);
-                      });
+                        Navigator.pushNamed(context, '/home');
+                      }
                     },
                     child: Image.asset(
                       'assets/images/shared/verify.png',
@@ -119,7 +126,7 @@ class _AddNewTaskViewState extends State<AddNewTaskView> {
     );
   }
 
-  ColorBoxSelection(int color) {
+  ColorBoxSelection(int? color) {
     return InkWell(
       onTap: () {
         _colorEC = color;
@@ -131,7 +138,7 @@ class _AddNewTaskViewState extends State<AddNewTaskView> {
           height: 50,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: Color(color).withOpacity(1),
+            color: Color(color ?? 16773836).withOpacity(1),
           ),
         ),
       ),

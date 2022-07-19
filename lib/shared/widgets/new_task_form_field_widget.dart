@@ -4,9 +4,14 @@ import 'package:google_fonts/google_fonts.dart';
 class NewTaskFormFieldWidget extends StatelessWidget {
   final String hintText;
   final TextEditingController? controller;
+  final FormFieldValidator<String>? validator;
 
-  const NewTaskFormFieldWidget({Key? key, required this.hintText, this.controller})
-      : super(key: key);
+  const NewTaskFormFieldWidget({
+    Key? key,
+    required this.hintText,
+    this.controller,
+    this.validator,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +22,7 @@ class NewTaskFormFieldWidget extends StatelessWidget {
       width: size.width * 0.9,
       child: TextFormField(
         controller: controller,
+        validator: validator,
         maxLines: 20,
         decoration: InputDecoration(
           hintText: hintText,

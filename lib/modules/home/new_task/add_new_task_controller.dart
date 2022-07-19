@@ -11,7 +11,6 @@ class AddNewTaskController extends ChangeNotifier {
   AddNewTaskController(this.repository);
 
   List<NewTaskModel> listTodos = [];
-
   String _searchString = "";
 
   void getTodos() async {
