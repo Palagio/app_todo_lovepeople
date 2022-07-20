@@ -23,7 +23,7 @@ class _ContainerListWidgetState extends State<ContainerListWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.all(6.0),
       child: Container(
         width: widget.size.width * 0.9,
         height: widget.size.height * 0.2,

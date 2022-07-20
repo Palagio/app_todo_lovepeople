@@ -1,9 +1,7 @@
 import 'package:app_todo_lovepeople/modules/home/new_task/add_new_task_controller.dart';
-import 'package:app_todo_lovepeople/modules/home/new_task/repository/new_task_repository.dart';
 import 'package:app_todo_lovepeople/modules/home/widgets/app_bar_widget.dart';
 import 'package:app_todo_lovepeople/modules/home/widgets/container_list_widget.dart';
 import 'package:app_todo_lovepeople/modules/home/widgets/search_words_widget.dart';
-
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
