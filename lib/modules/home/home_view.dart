@@ -1,4 +1,5 @@
 import 'package:app_todo_lovepeople/modules/home/new_task/add_new_task_controller.dart';
+import 'package:app_todo_lovepeople/modules/home/new_task/repository/new_task_repository.dart';
 import 'package:app_todo_lovepeople/modules/home/widgets/app_bar_widget.dart';
 import 'package:app_todo_lovepeople/modules/home/widgets/search_words_widget.dart';
 
@@ -14,20 +15,13 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   final _controller = TextEditingController();
-
-  String? searchText;
+  late AddNewTaskController controller;
 
   @override
   void initState() {
-    
     context.read<AddNewTaskController>().getTodos();
-    _controller.addListener(
-      () {
-        setState(() {
-          searchText = _controller.text;
-        });
-      },
-    );
+    controller = context.read();
+    controller.load();
     super.initState();
   }
 
@@ -49,45 +43,34 @@ class _HomeViewState extends State<HomeView> {
         width: size.width * 0.25,
         padding: size.width * 0.05,
       ),
-      body: Column(
-        children: [
-          SearchWordsWidget(
-            hintText: 'Procurar',
-            size: size,
-            controller: _controller,
-            onChanged: (value) {
-              Provider.of<AddNewTaskController>(context, listen: false)
-                  .changeSearchString(value);
-            },
-          ),
-          Expanded(
-            child: Consumer<AddNewTaskController>(
-                builder: (_, controller, snapshot) {
-              final todo = controller.listTodos.toList();
-              final filtro = todo;
-              if (filtro.isNotEmpty) {
-                return ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: filtro.length,
-                  itemBuilder: (context, index) {
-                    String cor = filtro[index].color;
-                    int color = int.parse(cor);
-                    final corHex = color.toRadixString(16);
-                    return Card(
-                        child: ListTile(
-                          title: Text(filtro[index].title),
-                          subtitle: Text(filtro[index].description),
-                        ),
-                        color: HexColor.fromHex(corHex));
-                  },
-                );
-              } else {
-                return Text('Sem resultados');
-              }
-            }),
-          ),
-        ],
-      ),
+      body: Consumer<AddNewTaskController>(builder: (_, controller, snapshot) {
+        final todo = controller.listToShow.toList();
+        return Column(
+          children: [
+            SearchWordsWidget(
+                hintText: 'Procurar',
+                size: size,
+                controller: _controller,
+                onChanged: controller.onChangeText),
+            Expanded(
+                child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: todo.length,
+              itemBuilder: (context, index) {
+                String cor = todo[index].color;
+                int color = int.parse(cor);
+                final corHex = color.toRadixString(16);
+                return Card(
+                    child: ListTile(
+                      title: Text(todo[index].title),
+                      subtitle: Text(todo[index].description),
+                    ),
+                    color: HexColor.fromHex(corHex));
+              },
+            )),
+          ],
+        );
+      }),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SizedBox(

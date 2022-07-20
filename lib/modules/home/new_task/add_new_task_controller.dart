@@ -1,5 +1,3 @@
-import 'dart:collection';
-
 import 'package:app_todo_lovepeople/modules/home/new_task/new_task_model.dart';
 
 import 'package:app_todo_lovepeople/modules/home/new_task/repository/new_task_repository.dart';
@@ -11,7 +9,7 @@ class AddNewTaskController extends ChangeNotifier {
   AddNewTaskController(this.repository);
 
   List<NewTaskModel> listTodos = [];
-  String _searchString = "";
+  List<NewTaskModel> listToShow = [];
 
   void getTodos() async {
     listTodos = await repository.getTodos();
@@ -24,15 +22,14 @@ class AddNewTaskController extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<UnmodifiableListView<NewTaskModel>> get todo async => _searchString
-          .isEmpty
-      ? UnmodifiableListView(listTodos)
-      : UnmodifiableListView(
-          listTodos.where((todo) => todo.title.contains(_searchString)));
+  void load() {
+    listToShow = listTodos;
+  }
 
-  void changeSearchString(String searchString) {
-    _searchString = searchString;
-    print(_searchString);
+  void onChangeText(String value) async {
+    listToShow = listTodos.where((element) {
+      return element.title.toString().toLowerCase().contains(value.toLowerCase());
+    }).toList();
     notifyListeners();
   }
 }
