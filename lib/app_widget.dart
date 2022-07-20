@@ -1,3 +1,4 @@
+import 'package:app_todo_lovepeople/cadastro_concluido.dart';
 import 'package:app_todo_lovepeople/modules/auth/auth_view.dart';
 import 'package:app_todo_lovepeople/modules/home/home_view.dart';
 import 'package:app_todo_lovepeople/modules/home/new_task/add_new_task_view.dart';
@@ -15,13 +16,14 @@ class AppWidget extends StatelessWidget {
         '/home': (context) => HomeView(),
         '/add_new': (context) => AddNewTaskView(),
         '/auth_view': (context) => AuthView(),
+        '/sign_up_final_view': (context) => CadastroConcluido(),
       },
       title: 'To Do List',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/sign_up_view',
+      initialRoute: '/sign_up_final_view',
     );
   }
 }
