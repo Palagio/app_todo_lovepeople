@@ -1,6 +1,7 @@
 import 'package:app_todo_lovepeople/modules/home/new_task/add_new_task_controller.dart';
 import 'package:app_todo_lovepeople/modules/home/new_task/repository/new_task_repository.dart';
 import 'package:app_todo_lovepeople/modules/home/widgets/app_bar_widget.dart';
+import 'package:app_todo_lovepeople/modules/home/widgets/container_list_widget.dart';
 import 'package:app_todo_lovepeople/modules/home/widgets/search_words_widget.dart';
 
 import 'package:provider/provider.dart';
@@ -60,11 +61,10 @@ class _HomeViewState extends State<HomeView> {
                 String cor = todo[index].color;
                 int color = int.parse(cor);
                 final corHex = color.toRadixString(16);
-                return Card(
-                    child: ListTile(
-                      title: Text(todo[index].title),
-                      subtitle: Text(todo[index].description),
-                    ),
+                return ContainerListWidget(
+                    size: size,
+                    title: todo[index].title,
+                    description: todo[index].description,
                     color: HexColor.fromHex(corHex));
               },
             )),
