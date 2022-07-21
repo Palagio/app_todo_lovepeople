@@ -71,8 +71,9 @@ class SignUpView extends StatelessWidget {
                 ),
                 DynamicButtonWidget(
                   onTap: () {
+                    presenter.validateSignUp();
                     if (presenter.signUpModel.isSignUpValid == true) {
-                      presenter.validateSignUp();
+                      presenter.postUserData();
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(

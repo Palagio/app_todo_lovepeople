@@ -24,7 +24,7 @@ class User {
     String? email;
     String? provider;
     bool? confirmed;
-    dynamic? blocked;
+    dynamic blocked;
     Role? role;
     String? createdAt;
     String? updatedAt;

@@ -5,10 +5,11 @@ import 'package:provider/provider.dart';
 
 class AuthUserTextFormFieldWidget extends StatelessWidget {
   final String hintText;
+  final dynamic onChanged;
 
   AuthUserTextFormFieldWidget({
     Key? key,
-    required this.hintText,
+    required this.hintText, required this.onChanged,
   }) : super(key: key);
 
   @override
@@ -24,6 +25,7 @@ class AuthUserTextFormFieldWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
         ),
         child: TextFormField(
+          onChanged: onChanged,
           style: GoogleFonts.openSans(
             textStyle: TextStyle(
               fontSize: 17,

@@ -1,7 +1,9 @@
+import 'package:app_todo_lovepeople/modules/home/home_presenter.dart';
 import 'package:app_todo_lovepeople/modules/home/widgets/app_bar_widget.dart';
 import 'package:app_todo_lovepeople/modules/home/widgets/search_words_widget.dart';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -25,16 +27,35 @@ class _HomeViewState extends State<HomeView> {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              const Padding(
-                padding: EdgeInsets.only(left: 25.0, right: 25, top: 25),
-                child: SearchWordsWidget(
-                  hintText: 'Busque palavras-chave',
+          child: Consumer<HomePresenter>(builder: (context, presenter, child) {
+            return Column(
+              children: [
+                const Padding(
+                  padding: EdgeInsets.only(left: 25.0, right: 25, top: 25),
+                  child: SearchWordsWidget(
+                    hintText: 'Busque palavras-chave',
+                  ),
                 ),
-              ),
-            ],
-          ),
+                Container(
+                  color: Colors.amber,
+                  height: size.height * 0.5,
+                  width: size.width * 0.8,
+                  child: ListView.builder(
+                    itemCount: presenter.homeModel.toDoList.length,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        color: Colors.white,
+                        height: size.height * 0.1,
+                        width: size.width * 0.8,
+                        child: Center(
+                            child: Text('${presenter.homeModel.toDoList}')),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            );
+          }),
         ),
       ),
       bottomNavigationBar: Padding(

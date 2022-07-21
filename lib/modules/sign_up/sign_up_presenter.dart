@@ -14,7 +14,7 @@ class SignUpPresenter with ChangeNotifier {
 
     Map<dynamic, dynamic> userDataJson = {
       'username': signUpModel.username,
-      'email': signUpModel.email,
+      'email': "'${signUpModel.email}'",
       'password': passwordInt
     };
 
@@ -46,7 +46,7 @@ class SignUpPresenter with ChangeNotifier {
         signUpModel.isUsernameSignupValid == true &&
         signUpModel.isPasswordValid == true) {
       return signUpModel.isSignUpValid = true;
-    } 
+    }
   }
 
   validatePassword() {

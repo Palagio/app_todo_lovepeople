@@ -83,12 +83,14 @@ class _AuthViewState extends State<AuthView> {
                   height: size.height * 0.03,
                 ),
                 AuthUserTextFormFieldWidget(
+                  onChanged: presenter.setUsername,
                   hintText: 'Número de telefone, email ou CPF',
                 ),
                 SizedBox(
                   height: size.height * 0.03,
                 ),
                 PasswordTextFormFieldWidget(
+                  onChanged: presenter.setPassword,
                   toggleStatus: presenter.toggle,
                   status: presenter.authModel.obscurePasswordStatus,
                   hintText: 'Senha',
@@ -103,7 +105,10 @@ class _AuthViewState extends State<AuthView> {
                   height: size.height * 0.08,
                 ),
                 DynamicButtonWidget(
-                  onTap: (){},
+                  onTap: ()  {
+                   presenter.postUserAuth();
+                 
+                  },
                   text: 'Entrar',
                   buttonColor: Color.fromARGB(255, 50, 1, 185),
                   width: size.width * 0.3,

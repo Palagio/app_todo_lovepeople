@@ -1,4 +1,4 @@
-import 'package:app_todo_lovepeople/modules/auth/auth_model.dart';
+import 'package:app_todo_lovepeople/modules/auth/model/auth_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -6,11 +6,12 @@ class PasswordTextFormFieldWidget extends StatelessWidget {
   final String hintText;
   final BoolValue status;
   final Function(BoolValue) toggleStatus;
+  final dynamic onChanged;
   PasswordTextFormFieldWidget({
     Key? key,
     required this.hintText,
     required this.status,
-    required this.toggleStatus,
+    required this.toggleStatus, required this.onChanged,
   }) : super(key: key);
 
   @override
@@ -25,6 +26,7 @@ class PasswordTextFormFieldWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
       ),
       child: TextFormField(
+        onChanged: onChanged,
         style: GoogleFonts.openSans(
           textStyle: TextStyle(
             fontSize: 17,

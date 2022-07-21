@@ -6,10 +6,13 @@ import 'package:provider/provider.dart';
 class UserTextFormFieldWidget extends StatelessWidget {
   final String hintText;
   final TextEditingController? controller;
-
+  final dynamic onChanged;
 
   UserTextFormFieldWidget({
-    Key? key,required this.hintText, this.controller,
+    Key? key,
+    required this.hintText,
+    this.controller,
+    this.onChanged,
   }) : super(key: key);
 
   @override
@@ -25,7 +28,7 @@ class UserTextFormFieldWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
         ),
         child: TextFormField(
-   
+          onChanged: onChanged,
           style: GoogleFonts.openSans(
             textStyle: TextStyle(
               fontSize: 17,
@@ -34,8 +37,14 @@ class UserTextFormFieldWidget extends StatelessWidget {
             ),
           ),
           decoration: InputDecoration(
-            border: InputBorder.none,
-            enabledBorder: InputBorder.none,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(13),
+              borderSide: const BorderSide(color: Colors.white),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(13),
+              borderSide: const BorderSide(color: Colors.white),
+            ),
             hintText: hintText,
             hintStyle: GoogleFonts.openSans(
               textStyle: TextStyle(

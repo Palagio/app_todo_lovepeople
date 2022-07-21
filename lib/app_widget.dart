@@ -21,7 +21,7 @@ class AppWidget extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/sign_up_view',
+      initialRoute: '/auth_view',
     );
   }
 }
