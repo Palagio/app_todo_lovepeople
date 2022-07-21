@@ -102,7 +102,6 @@ class SignUpView extends StatelessWidget {
                   height: size.height * 0.12,
                 ),
                 TextButtonWidget(
-                  route: '',
                   marginRight: 0,
                   text: 'Já possui cadastro? ',
                   buttonText: 'Entrar',

@@ -43,12 +43,13 @@ class _HomeViewState extends State<HomeView> {
                   child: ListView.builder(
                     itemCount: presenter.homeModel.toDoList.length,
                     itemBuilder: (context, index) {
-                      return Container(
-                        color: Colors.white,
-                        height: size.height * 0.1,
-                        width: size.width * 0.8,
-                        child: Center(
-                            child: Text('${presenter.homeModel.toDoList}')),
+                      return SizedBox(
+                        height: size.height * 0.09,
+                        child: Card(
+                          color: Colors.white,
+                          child: Center(
+                              child: Text('${presenter.homeModel.toDoList}')),
+                        ),
                       );
                     },
                   ),

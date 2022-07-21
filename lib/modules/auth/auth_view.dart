@@ -15,6 +15,8 @@ class AuthView extends StatefulWidget {
 }
 
 class _AuthViewState extends State<AuthView> {
+
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -96,7 +98,6 @@ class _AuthViewState extends State<AuthView> {
                   hintText: 'Senha',
                 ),
                 TextButtonWidget(
-                  route: '',
                   buttonText: 'Clique aqui',
                   text: 'Esqueceu seu login ou senha? ',
                   marginRight: size.width * 0.18,
@@ -105,9 +106,28 @@ class _AuthViewState extends State<AuthView> {
                   height: size.height * 0.08,
                 ),
                 DynamicButtonWidget(
-                  onTap: ()  {
-                   presenter.postUserAuth();
-                 
+                  onTap: () async {
+                    await presenter.postUserAuth();
+                    if (presenter.authModel.isAuthValid == true) {
+                      Navigator.pushReplacementNamed(context, '/home');
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            'Algo deu errado, revise as informações.',
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.openSans(
+                              textStyle: TextStyle(
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
+                          duration: Duration(
+                            seconds: 3,
+                          ),
+                        ),
+                      );
+                    }
                   },
                   text: 'Entrar',
                   buttonColor: Color.fromARGB(255, 50, 1, 185),
@@ -118,7 +138,6 @@ class _AuthViewState extends State<AuthView> {
                   height: size.height * 0.07,
                 ),
                 TextButtonWidget(
-                  route: '',
                   marginRight: 0,
                   text: 'Não possui cadastro? ',
                   buttonText: 'Clique aqui',

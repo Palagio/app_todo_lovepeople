@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 class TextButtonWidget extends StatelessWidget {
   final String text;
   final String buttonText;
-  final String route;
+
   final double marginRight;
 
   const TextButtonWidget({
@@ -12,7 +12,7 @@ class TextButtonWidget extends StatelessWidget {
     required this.text,
     required this.buttonText,
     required this.marginRight,
-    required this.route,
+ 
   }) : super(key: key);
 
   @override

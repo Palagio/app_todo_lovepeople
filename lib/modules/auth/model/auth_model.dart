@@ -7,7 +7,15 @@ class AuthModel {
 
   String password = '';
 
-  bool isLoginValid = false;
+  String token = '';
+
+  bool isUserLogged = false;
+
+  bool isUsernameValid = false;
+
+  bool isPasswordValid = false;
+
+  bool isAuthValid = false;
 }
 
 class BoolValue {
