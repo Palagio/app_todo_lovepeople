@@ -1,12 +1,9 @@
-import 'package:app_todo_lovepeople/modules/auth/auth_presenter.dart';
 import 'package:app_todo_lovepeople/modules/auth/auth_view.dart';
-import 'package:app_todo_lovepeople/modules/auth/model/auth_model.dart';
 import 'package:app_todo_lovepeople/modules/auth/waiting_view.dart';
 import 'package:app_todo_lovepeople/modules/home/home_view.dart';
 import 'package:app_todo_lovepeople/modules/home/new_task/add_new_task_view.dart';
 import 'package:app_todo_lovepeople/modules/sign_up/sign_up_view.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class AppWidget extends StatefulWidget {
   const AppWidget({Key? key}) : super(key: key);
