@@ -17,7 +17,7 @@ class _AddNewTaskViewState extends State<AddNewTaskView> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _titleEC = TextEditingController();
   final TextEditingController _descriptionEC = TextEditingController();
-  int? _colorEC = 15255039;
+  int? _colorEC;
 
   // final _formKey = GlobalKey<FormState>();
   @override

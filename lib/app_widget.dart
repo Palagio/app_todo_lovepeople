@@ -29,7 +29,7 @@ class _AppWidgetState extends State<AppWidget> {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/splash_view',
+      initialRoute: '/home',
         
     );
   }

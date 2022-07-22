@@ -1,10 +1,9 @@
-import 'package:app_todo_lovepeople/modules/home/new_task/add_new_task_controller.dart';
+import 'package:app_todo_lovepeople/modules/home/home_page_controller.dart';
 import 'package:app_todo_lovepeople/modules/home/widgets/app_bar_widget.dart';
 import 'package:app_todo_lovepeople/modules/home/widgets/container_list_widget.dart';
 import 'package:app_todo_lovepeople/modules/home/widgets/search_words_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
-
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -15,11 +14,11 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   final _controller = TextEditingController();
-  late AddNewTaskController controller;
+  late HomePageController controller;
 
   @override
   void initState() {
-    context.read<AddNewTaskController>().getTodos();
+    context.read<HomePageController>().getTodos();
     controller = context.read();
     controller.load();
     super.initState();
@@ -43,7 +42,7 @@ class _HomeViewState extends State<HomeView> {
         width: size.width * 0.25,
         padding: size.width * 0.05,
       ),
-      body: Consumer<AddNewTaskController>(builder: (_, controller, snapshot) {
+      body: Consumer<HomePageController>(builder: (_, controller, snapshot) {
         final todo = controller.listToShow.toList();
         return Column(
           children: [

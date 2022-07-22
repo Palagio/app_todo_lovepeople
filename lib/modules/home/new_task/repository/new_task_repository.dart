@@ -3,7 +3,7 @@ import 'package:app_todo_lovepeople/modules/home/new_task/new_task_model.dart';
 
 import 'package:http/http.dart' as http;
 
-class NewTaskRepository {
+class Repository {
   Future<List<NewTaskModel>> getTodos() async {
     var url = Uri.parse('https://todo-lovepeople.herokuapp.com/todos');
     List<NewTaskModel> listTodo = [];
