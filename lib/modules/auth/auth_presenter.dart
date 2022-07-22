@@ -41,7 +41,6 @@ class AuthPresenter with ChangeNotifier {
         var body = jsonDecode(response.body);
         authModel.token = body['jwt'];
         await sharedPreferences.setString('jwt', "${authModel.token}");
-        print(sharedPreferences.getString('jwt'));
         authModel.token = sharedPreferences.getString('jwt')!;
         authModel.isAuthValid = true;
         notifyListeners();
@@ -53,7 +52,6 @@ class AuthPresenter with ChangeNotifier {
 
   Future tokenVerify() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    print(sharedPreferences.getString('jwt'));
     if (await sharedPreferences.getString('jwt') != '') {
       authModel.isUserLogged = true;
       notifyListeners();

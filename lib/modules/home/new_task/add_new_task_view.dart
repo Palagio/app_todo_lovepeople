@@ -108,8 +108,9 @@ class _AddNewTaskViewState extends State<AddNewTaskView> {
               child: SizedBox(
                 width: size.width * 0.12,
                 child: InkWell(
-                  onTap: () {
-                    presenter.postNewTask();
+                  onTap: () async{
+                   await presenter.postNewTask();
+                    Navigator.pop(context);
                   },
                   child: Image.asset(
                     'assets/images/shared/verify.png',

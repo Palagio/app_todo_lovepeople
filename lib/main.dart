@@ -5,6 +5,7 @@ import 'package:app_todo_lovepeople/modules/home/home_model.dart';
 import 'package:app_todo_lovepeople/modules/home/home_presenter.dart';
 import 'package:app_todo_lovepeople/modules/home/new_task/add_new_task_presenter.dart';
 import 'package:app_todo_lovepeople/modules/home/new_task/add_new_task_model.dart';
+import 'package:app_todo_lovepeople/modules/home/new_task/add_new_task_repository.dart';
 import 'package:app_todo_lovepeople/modules/sign_up/model/sign_up_model.dart';
 import 'package:app_todo_lovepeople/modules/sign_up/sign_up_presenter.dart';
 
@@ -22,10 +23,14 @@ void main() {
           create: (context) => SignUpPresenter(SignUpModel()),
         ),
         ChangeNotifierProvider(
-          create: (context) => AddNewTaskPresenter(AddNewTaskModel()),
+          create: (context) =>
+              AddNewTaskPresenter(AddNewTaskModel(), AddNewTaskRepository()),
         ),
         ChangeNotifierProvider(
-          create: (context) => HomePresenter(HomeModel()),
+          create: (context) => HomePresenter(
+            HomeModel(),
+            AddNewTaskRepository(),
+          ),
         ),
       ],
       child: AppWidget(),

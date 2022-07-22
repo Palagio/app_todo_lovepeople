@@ -54,6 +54,14 @@ class _HomeViewState extends State<HomeView> {
                     },
                   ),
                 ),
+                InkWell(
+                  onTap: presenter.addNewTaskRepository.getToDos,
+                  child: Container(
+                    color: Colors.amber,
+                    height: 50,
+                    width: 50,
+                  ),
+                ),
               ],
             );
           }),

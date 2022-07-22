@@ -1,11 +1,18 @@
 import 'dart:convert';
 import 'package:app_todo_lovepeople/modules/home/new_task/add_new_task_model.dart';
+import 'package:app_todo_lovepeople/modules/home/new_task/add_new_task_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AddNewTaskPresenter with ChangeNotifier {
+  final AddNewTaskRepository addNewTaskRepository;
   final AddNewTaskModel addNewTaskModel;
-  AddNewTaskPresenter(this.addNewTaskModel);
+  AddNewTaskPresenter(this.addNewTaskModel, this.addNewTaskRepository);
+
+  alou() {
+    addNewTaskRepository.getToDos();
+  }
 
   setNewTaskTitle(String value) => addNewTaskModel.newTaskTitle = value;
 
@@ -65,6 +72,8 @@ class AddNewTaskPresenter with ChangeNotifier {
   }
 
   Future postNewTask() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+
     Map<dynamic, dynamic> userDataJson = {
       'title': addNewTaskModel.newTaskTitle,
       'description': addNewTaskModel.newTaskDescription,
@@ -72,8 +81,12 @@ class AddNewTaskPresenter with ChangeNotifier {
     };
 
     var json = jsonEncode(userDataJson);
+  
 
-    Map<String, String> headers = {"Content-Type": "application/json"};
+    Map<String, String> headers = {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ${sharedPreferences.getString('jwt')}',
+    };
 
     try {
       var response = await http.post(
@@ -83,9 +96,8 @@ class AddNewTaskPresenter with ChangeNotifier {
         headers: headers,
         body: json,
       );
-      print(response.body);
       print(response.statusCode);
-      print(userDataJson);
+      if (response.statusCode == 200) {}
     } catch (e) {
       print(e);
     }
