@@ -4,13 +4,16 @@ import 'package:google_fonts/google_fonts.dart';
 class NewTaskFormFieldWidget extends StatelessWidget {
   final String hintText;
   final dynamic onChanged;
-  final Color color;
+
+  final TextEditingController? controller;
+  final FormFieldValidator<String>? validator;
 
   const NewTaskFormFieldWidget({
     Key? key,
     required this.hintText,
     this.onChanged,
-    required this.color,
+    this.controller,
+    this.validator,
   }) : super(key: key);
 
   @override
@@ -22,6 +25,8 @@ class NewTaskFormFieldWidget extends StatelessWidget {
       width: size.width * 0.9,
       child: TextFormField(
         onChanged: onChanged,
+        controller: controller,
+        validator: validator,
         maxLines: 20,
         decoration: InputDecoration(
           hintText: hintText,
@@ -42,7 +47,6 @@ class NewTaskFormFieldWidget extends StatelessWidget {
             borderSide: const BorderSide(color: Colors.white),
           ),
           filled: true,
-          fillColor: color,
         ),
       ),
     );

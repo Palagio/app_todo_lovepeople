@@ -1,9 +1,10 @@
-import 'package:app_todo_lovepeople/modules/home/home_presenter.dart';
+import 'package:app_todo_lovepeople/modules/home/new_task/add_new_task_controller.dart';
 import 'package:app_todo_lovepeople/modules/home/widgets/app_bar_widget.dart';
+import 'package:app_todo_lovepeople/modules/home/widgets/container_list_widget.dart';
 import 'package:app_todo_lovepeople/modules/home/widgets/search_words_widget.dart';
-
-import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter/material.dart';
+
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -13,6 +14,23 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  final _controller = TextEditingController();
+  late AddNewTaskController controller;
+
+  @override
+  void initState() {
+    context.read<AddNewTaskController>().getTodos();
+    controller = context.read();
+    controller.load();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -25,48 +43,41 @@ class _HomeViewState extends State<HomeView> {
         width: size.width * 0.25,
         padding: size.width * 0.05,
       ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Consumer<HomePresenter>(builder: (context, presenter, child) {
-            return Column(
-              children: [
-                const Padding(
-                  padding: EdgeInsets.only(left: 25.0, right: 25, top: 25),
-                  child: SearchWordsWidget(
-                    hintText: 'Busque palavras-chave',
-                  ),
-                ),
-                Container(
-                  color: Colors.amber,
-                  height: size.height * 0.5,
-                  width: size.width * 0.8,
-                  child: ListView.builder(
-                    itemCount: presenter.homeModel.toDoList.length,
-                    itemBuilder: (context, index) {
-                      return SizedBox(
-                        height: size.height * 0.09,
-                        child: Card(
-                          color: Colors.white,
-                          child: Center(
-                              child: Text('${presenter.homeModel.toDoList}')),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-              ],
-            );
-          }),
-        ),
-      ),
+      body: Consumer<AddNewTaskController>(builder: (_, controller, snapshot) {
+        final todo = controller.listToShow.toList();
+        return Column(
+          children: [
+            SearchWordsWidget(
+                hintText: 'Procurar',
+                size: size,
+                controller: _controller,
+                onChanged: controller.onChangeText),
+            Expanded(
+                child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: todo.length,
+              itemBuilder: (context, index) {
+                String cor = todo[index].color;
+                int color = int.parse(cor);
+                final corHex = color.toRadixString(16);
+                return ContainerListWidget(
+                    size: size,
+                    title: todo[index].title,
+                    description: todo[index].description,
+                    color: HexColor.fromHex(corHex));
+              },
+            )),
+          ],
+        );
+      }),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SizedBox(
           width: 50,
           height: 50,
           child: InkWell(
-            onTap: () {
-              Navigator.pushNamed(context, '/add_new');
+            onTap: () async {
+              await Navigator.pushNamed(context, '/add_new');
             },
             child: Image.asset(
               'assets/images/shared/plus.png',
@@ -76,5 +87,15 @@ class _HomeViewState extends State<HomeView> {
         ),
       ),
     );
+  }
+}
+
+class HexColor {
+  static Color fromHex(String hexString) {
+    final buffer = StringBuffer();
+    if (hexString.length <= 7) buffer.write('ff');
+    buffer.write(hexString.replaceFirst('#', ''));
+
+    return Color(int.parse(buffer.toString(), radix: 16));
   }
 }

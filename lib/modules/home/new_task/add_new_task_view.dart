@@ -1,10 +1,10 @@
-import 'package:app_todo_lovepeople/modules/home/new_task/add_new_task_presenter.dart';
-import 'package:app_todo_lovepeople/modules/home/widgets/app_bar_widget.dart';
-import 'package:app_todo_lovepeople/modules/home/widgets/color_box_selection_widget.dart';
-import 'package:app_todo_lovepeople/shared/widgets/new_task_form_field_widget.dart';
+import 'package:app_todo_lovepeople/modules/home/new_task/add_new_task_controller.dart';
 import 'package:app_todo_lovepeople/shared/widgets/text_form_field_widget.dart';
+import 'package:app_todo_lovepeople/modules/home/widgets/app_bar_widget.dart';
+import 'package:app_todo_lovepeople/shared/widgets/new_task_form_field_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:validatorless/validatorless.dart';
 
 class AddNewTaskView extends StatefulWidget {
   const AddNewTaskView({Key? key}) : super(key: key);
@@ -14,113 +14,134 @@ class AddNewTaskView extends StatefulWidget {
 }
 
 class _AddNewTaskViewState extends State<AddNewTaskView> {
+  final _formKey = GlobalKey<FormState>();
+  final TextEditingController _titleEC = TextEditingController();
+  final TextEditingController _descriptionEC = TextEditingController();
+  int? _colorEC = 15255039;
+
+  // final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Consumer<AddNewTaskPresenter>(builder: (context, presenter, child) {
-      return Scaffold(
-        backgroundColor: const Color.fromARGB(255, 169, 1, 247),
-        appBar: AppBarWidget(
-          title: 'Nova Tarefa',
-          height: size.height * 0.15,
-          width: size.width * 0.25,
-          padding: size.width * 0.05,
-        ),
-        body: Form(
-          child: Stack(
-            children: [
-              Positioned(
-                top: size.height * 0.05,
-                left: size.width * 0.05,
-                child: UserTextFormFieldWidget(
-                  onChanged: presenter.setNewTaskTitle,
-                  hintText: 'Título da Tarefa',
-                ),
-              ),
-              Positioned(
-                top: size.height * 0.135,
-                left: size.width * 0.05,
-                child: NewTaskFormFieldWidget(
-                  color: presenter.addNewTaskModel.currentColor,
-                  onChanged: presenter.setNewTaskDescription,
-                  hintText: 'Escreva uma descrição para sua tarefa.',
-                ),
-              ),
-              Positioned(
-                top: size.height * 0.49,
-                left: size.width * 0.01,
-                child: Container(
-                  width: size.width * 1,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      ColorBoxSelectionWidget(
-                        color: 0xFFF2CC,
-                        onTap: presenter.setColor1,
-                      ),
-                      ColorBoxSelectionWidget(
-                        color: 0xFFD9F0,
-                        onTap: presenter.setColor2,
-                      ),
-                      ColorBoxSelectionWidget(
-                        color: 0xE8C5FF,
-                        onTap: presenter.setColor3,
-                      ),
-                      ColorBoxSelectionWidget(
-                        color: 0xCAFBFF,
-                        onTap: presenter.setColor4,
-                      ),
-                      ColorBoxSelectionWidget(
-                        color: 0xE3FFE6,
-                        onTap: presenter.setColor5,
-                      ),
-                    ],
-                  ),
-                ),
-              )
-            ],
-          ),
-        ),
-        bottomNavigationBar: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 169, 1, 247),
+      appBar: AppBarWidget(
+        title: 'Nova Tarefa',
+        height: size.height * 0.15,
+        width: size.width * 0.25,
+        padding: size.width * 0.05,
+      ),
+      body: Form(
+        key: _formKey,
+        child: Stack(
           children: [
-            Padding(
-              padding: EdgeInsets.only(bottom: size.height * 0.05),
-              child: SizedBox(
-                width: size.width * 0.1,
-                height: size.width * 0.1,
-                child: InkWell(
-                  onTap: () {
-                    Navigator.pushNamed(context, '/home');
-                  },
-                  child: Image.asset(
-                    'assets/images/shared/cross.png',
-                    color: const Color(0xFFFFFFFF),
-                  ),
-                ),
+            Positioned(
+              top: size.height * 0.05,
+              left: size.width * 0.05,
+              child: UserTextFormFieldWidget(
+                controller: _titleEC,
+                hintText: 'Título da Tarefa',
+                validator: Validatorless.required('Título obrigatório'),
               ),
             ),
-            SizedBox(
-              width: size.width * 0.05,
-            ),
-            Padding(
-              padding: EdgeInsets.only(bottom: size.height * 0.05),
-              child: SizedBox(
-                width: size.width * 0.12,
-                child: InkWell(
-                  onTap: () {
-                    presenter.postNewTask();
-                  },
-                  child: Image.asset(
-                    'assets/images/shared/verify.png',
-                    color: const Color(0xFFFFFFFF),
-                  ),
-                ),
+            Positioned(
+              top: size.height * 0.135,
+              left: size.width * 0.05,
+              child: NewTaskFormFieldWidget(
+                controller: _descriptionEC,
+                hintText: 'Escreva uma descrição para sua tarefa.',
+                validator: Validatorless.required('Descrição obrigatória'),
               ),
             ),
+            Positioned(
+              top: size.height * 0.63,
+              left: size.width * 0.01,
+              child: Container(
+                width: 400,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ColorBoxSelection(0xFFF2CC),
+                    ColorBoxSelection(0xFFD9F0),
+                    ColorBoxSelection(0xE8C5FF),
+                    ColorBoxSelection(0xCAFBFF),
+                    ColorBoxSelection(0xE3FFE6),
+                  ],
+                ),
+              ),
+            )
           ],
         ),
-      );
-    });
+      ),
+      bottomNavigationBar: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: SizedBox(
+              width: 50,
+              height: 50,
+              child: InkWell(
+                onTap: () {
+                  Navigator.pushNamed(context, '/home');
+                },
+                child: Image.asset(
+                  'assets/images/shared/cross.png',
+                  color: const Color(0xFFFFFFFF),
+                ),
+              ),
+            ),
+          ),
+          Consumer<AddNewTaskController>(
+            builder: ((context, controller, _) {
+              return Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: SizedBox(
+                  width: 50,
+                  height: 50,
+                  child: InkWell(
+                    onTap: () {
+                      final formValid =
+                          _formKey.currentState?.validate() ?? false;
+                      if (formValid && _colorEC != null) {
+                        controller.postTodos(
+                          _titleEC.text,
+                          _descriptionEC.text,
+                          _colorEC.toString(),
+                        );
+                        Navigator.pushNamed(context, '/home');
+                      }
+                    },
+                    child: Image.asset(
+                      'assets/images/shared/verify.png',
+                      color: const Color(0xFFFFFFFF),
+                    ),
+                  ),
+                ),
+              );
+            }),
+          ),
+        ],
+      ),
+    );
+  }
+
+  ColorBoxSelection(int? color) {
+    return InkWell(
+      onTap: () {
+        _colorEC = color;
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+          width: 50,
+          height: 50,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: Color(color ?? 16773836).withOpacity(1),
+          ),
+        ),
+      ),
+    );
   }
 }

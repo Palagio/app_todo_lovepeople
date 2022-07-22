@@ -3,19 +3,26 @@ import 'package:google_fonts/google_fonts.dart';
 
 class SearchWordsWidget extends StatelessWidget {
   final String hintText;
+  final Size size;
+  final TextEditingController controller;
+  final ValueChanged<String>? onChanged;
 
   const SearchWordsWidget({
     Key? key,
     required this.hintText,
+    required this.size,
+    required this.controller,
+    this.onChanged,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return SizedBox(
-      height: size.height * 0.1,
+      height: size.height * 0.06,
       width: size.width * 0.9,
-      child: TextFormField(
+      child: TextField(
+        controller: controller,
         decoration: InputDecoration(
           suffixIcon: InkWell(
             onTap: () {},
@@ -40,6 +47,7 @@ class SearchWordsWidget extends StatelessWidget {
           filled: true,
           fillColor: Colors.white,
         ),
+        onChanged: onChanged,
       ),
     );
   }
