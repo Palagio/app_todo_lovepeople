@@ -77,7 +77,6 @@ class _HomeViewState extends State<HomeView> {
           child: InkWell(
             onTap: () async {
               await Navigator.pushNamed(context, '/add_new');
-              setState(() {});
             },
             child: Image.asset(
               'assets/images/shared/plus.png',
