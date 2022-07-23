@@ -19,8 +19,11 @@ class _HomeViewState extends State<HomeView> {
   @override
   void initState() {
     context.read<HomePageController>().getTodos();
-    controller = context.read();
-    controller.load();
+    setState(() {
+      controller = context.read();
+      controller.load();
+    });
+
     super.initState();
   }
 

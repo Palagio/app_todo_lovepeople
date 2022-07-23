@@ -28,4 +28,9 @@ class HomePageController extends ChangeNotifier {
     }).toList();
     notifyListeners();
   }
+
+  void delete(int id) async {
+    await repository.delTodos(id);
+    notifyListeners();
+  }
 }

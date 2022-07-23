@@ -1,8 +1,9 @@
+import 'package:app_todo_lovepeople/modules/home/home_page_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class DeleteDialogWidget {
-  
   showAlertDialog(BuildContext context, id, title) {
     final size = MediaQuery.of(context).size;
 
@@ -46,24 +47,26 @@ class DeleteDialogWidget {
                 ),
               ),
             ),
-            Positioned(
-              right: size.height * 0.12,
-              top: size.height * 0.09,
-              child: TextButton(
-                onPressed: (){},
-                child: Text(
-                  'Confirmar',
-                  style: GoogleFonts.openSans(
-                    textStyle: TextStyle(
-                      color: Color.fromARGB(255, 50, 1, 185),
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                      letterSpacing: 0.5,
+            Consumer<HomePageController>(builder: (context, controller, _) {
+              return Positioned(
+                right: size.height * 0.12,
+                top: size.height * 0.09,
+                child: TextButton(
+                  onPressed: () => controller.delete(id),
+                  child: Text(
+                    'Confirmar',
+                    style: GoogleFonts.openSans(
+                      textStyle: TextStyle(
+                        color: Color.fromARGB(255, 50, 1, 185),
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        letterSpacing: 0.5,
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ),
+              );
+            }),
             Positioned(
               right: size.height * 0.01,
               top: size.height * 0.09,

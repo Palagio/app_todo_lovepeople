@@ -46,4 +46,19 @@ class Repository {
       return NewTaskModel.fromJson(json.decode(response.body));
     });
   }
+
+  Future<http.Response> delTodos(id) async {
+    var url = Uri.parse('https://todo-lovepeople.herokuapp.com/todos/$id');
+    String token =
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTM2LCJpYXQiOjE2NTc5MTAxMTksImV4cCI6MTY2MDUwMjExOX0.ZSNNbYk8OrG1jNJTMYBMRAQDYDPp84FKxddxoWA_ZDw';
+    final http.Response response = await http.delete(
+      url,
+      headers: {
+        'Content-type': 'application/json',
+        "Authorization": "Bearer $token"
+      },
+    );
+    print(id);
+    return response;
+  }
 }
