@@ -1,3 +1,4 @@
+import 'package:app_todo_lovepeople/shared/widgets/delete_dialog_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -6,6 +7,7 @@ class ContainerListWidget extends StatefulWidget {
   final Color color;
   final String title;
   final String description;
+  final int id;
 
   const ContainerListWidget({
     Key? key,
@@ -13,13 +15,14 @@ class ContainerListWidget extends StatefulWidget {
     required this.title,
     required this.description,
     required this.color,
+    required this.id,
   }) : super(key: key);
 
   @override
   State<ContainerListWidget> createState() => _ContainerListWidgetState();
 }
 
-class _ContainerListWidgetState extends State<ContainerListWidget> {
+class _ContainerListWidgetState extends State<ContainerListWidget>  with DeleteDialogWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -49,10 +52,10 @@ class _ContainerListWidgetState extends State<ContainerListWidget> {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: InkWell(
-                    onTap: () {},
+                InkWell(
+                  onTap: () => showAlertDialog(context, widget.id, widget.title),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
                     child: SizedBox(
                       width: 25,
                       height: 25,

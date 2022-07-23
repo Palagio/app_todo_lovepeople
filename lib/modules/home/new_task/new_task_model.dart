@@ -2,7 +2,9 @@ class NewTaskModel {
   final String title;
   final String description;
   final String color;
-  NewTaskModel({
+  final int id;
+  NewTaskModel(
+    this.id, {
     required this.title,
     required this.description,
     required this.color,
@@ -11,9 +13,10 @@ class NewTaskModel {
   NewTaskModel.fromJson(Map<String, dynamic> json)
       : title = json['title'],
         description = json['description'],
-        color = json['color'];
+        color = json['color'],
+        id = json['id'];
 
   Map toJson() {
-    return {'title': title, 'description': description, 'color': color};
+    return {'title': title, 'description': description, 'color': color, 'id': id};
   }
 }

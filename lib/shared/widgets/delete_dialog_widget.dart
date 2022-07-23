@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class DeleteDialogWidget extends StatelessWidget {
-  const DeleteDialogWidget({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
+class DeleteDialogWidget {
+  
+  showAlertDialog(BuildContext context, id, title) {
     final size = MediaQuery.of(context).size;
 
-    return AlertDialog(
+    AlertDialog alert = AlertDialog(
       contentPadding: EdgeInsets.zero,
       content: Container(
         padding: EdgeInsets.zero,
@@ -36,7 +34,7 @@ class DeleteDialogWidget extends StatelessWidget {
               child: Container(
                 width: size.width * 0.7,
                 child: Text(
-                  '\"Limpar a casa\" será movido para lixeira.',
+                  ' \'${title.toString().toUpperCase()}\' será movido para lixeira.',
                   style: GoogleFonts.openSans(
                     textStyle: TextStyle(
                       color: Color.fromARGB(255, 50, 1, 185),
@@ -52,7 +50,7 @@ class DeleteDialogWidget extends StatelessWidget {
               right: size.height * 0.12,
               top: size.height * 0.09,
               child: TextButton(
-                onPressed: () {},
+                onPressed: (){},
                 child: Text(
                   'Confirmar',
                   style: GoogleFonts.openSans(
@@ -90,5 +88,11 @@ class DeleteDialogWidget extends StatelessWidget {
         ),
       ),
     );
+
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alert;
+        });
   }
 }

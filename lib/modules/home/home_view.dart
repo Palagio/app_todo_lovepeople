@@ -60,6 +60,7 @@ class _HomeViewState extends State<HomeView> {
                 int color = int.parse(cor);
                 final corHex = color.toRadixString(16);
                 return ContainerListWidget(
+                    id: todo[index].id,
                     size: size,
                     title: todo[index].title,
                     description: todo[index].description,
