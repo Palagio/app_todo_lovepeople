@@ -109,7 +109,7 @@ class _AuthViewState extends State<AuthView> {
                   onTap: () async {
                     await presenter.postUserAuth();
                     if (presenter.authModel.isAuthValid == true) {
-                      Navigator.pushReplacementNamed(context, '/home');
+                      Navigator.pushNamed(context, '/home');
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
