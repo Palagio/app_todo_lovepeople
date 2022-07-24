@@ -52,7 +52,10 @@ class DeleteDialogWidget {
                 right: size.height * 0.12,
                 top: size.height * 0.09,
                 child: TextButton(
-                  onPressed: () => controller.delete(id),
+                  onPressed: () {
+                    controller.delete(id);
+                    Navigator.pop(context);
+                  },
                   child: Text(
                     'Confirmar',
                     style: GoogleFonts.openSans(
