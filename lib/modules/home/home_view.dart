@@ -5,6 +5,8 @@ import 'package:app_todo_lovepeople/modules/home/widgets/search_words_widget.dar
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
+import 'widgets/hex_color_helper.dart';
+
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
 
@@ -19,10 +21,9 @@ class _HomeViewState extends State<HomeView> {
   @override
   void initState() {
     context.read<HomePageController>().getTodos();
-    setState(() {
-      controller = context.read();
-      controller.load();
-    });
+
+    controller = context.read();
+    controller.load();
 
     super.initState();
   }
@@ -93,12 +94,3 @@ class _HomeViewState extends State<HomeView> {
   }
 }
 
-class HexColor {
-  static Color fromHex(String hexString) {
-    final buffer = StringBuffer();
-    if (hexString.length <= 7) buffer.write('ff');
-    buffer.write(hexString.replaceFirst('#', ''));
-
-    return Color(int.parse(buffer.toString(), radix: 16));
-  }
-}

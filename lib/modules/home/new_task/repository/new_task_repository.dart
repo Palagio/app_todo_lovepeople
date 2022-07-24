@@ -58,7 +58,7 @@ class Repository {
         "Authorization": "Bearer $token"
       },
     );
-    print(id);
+
     return response;
   }
 }
