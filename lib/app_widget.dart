@@ -22,7 +22,7 @@ class _AppWidgetState extends State<AppWidget> {
         '/home': (context) => HomeView(),
         '/add_new': (context) => AddNewTaskView(),
         '/auth_view': (context) => AuthView(),
-        '/splash_view': (context) => WaitingView(),
+        '/splash_view': (context) => SplashView(),
       },
       title: 'To Do List',
       debugShowCheckedModeBanner: false,
