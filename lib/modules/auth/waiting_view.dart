@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:app_todo_lovepeople/modules/auth/auth_presenter.dart';
 import 'package:provider/provider.dart';
 
-class WaitingView extends StatefulWidget {
-  WaitingView({Key? key}) : super(key: key);
+class SplashView extends StatefulWidget {
+  SplashView({Key? key}) : super(key: key);
 
   @override
-  State<WaitingView> createState() => _WaitingViewState();
+  State<SplashView> createState() => _SplashViewState();
 }
 
-class _WaitingViewState extends State<WaitingView> {
+class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
     super.initState();
@@ -19,7 +19,7 @@ class _WaitingViewState extends State<WaitingView> {
 
   @override
   Widget build(BuildContext context) {
-      return Container();
+    return Container();
   }
 
   funcao() async {

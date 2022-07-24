@@ -1,14 +1,7 @@
+import 'package:app_todo_lovepeople/modules/home/new_task/model/add_new_task_json.dart';
+
 class HomeModel {
-  List toDoList = [
-    'teste',
-    'teste',
-    'teste',
-    'teste',
-    'teste',
-    'teste',
-    'teste',
-    'teste',
-  ];
+  List<ToDo> toDoList = [];
 
   final String taskTitle = '';
 

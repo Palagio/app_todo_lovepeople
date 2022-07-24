@@ -1,6 +1,8 @@
 import 'dart:convert';
-import 'package:app_todo_lovepeople/modules/home/new_task/add_new_task_model.dart';
-import 'package:app_todo_lovepeople/modules/home/new_task/add_new_task_repository.dart';
+import 'package:app_todo_lovepeople/modules/home/home_model.dart';
+import 'package:app_todo_lovepeople/modules/home/home_presenter.dart';
+import 'package:app_todo_lovepeople/modules/home/new_task/model/add_new_task_model.dart';
+import 'package:app_todo_lovepeople/modules/home/new_task/model/repositories/add_new_task_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -8,11 +10,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 class AddNewTaskPresenter with ChangeNotifier {
   final AddNewTaskRepository addNewTaskRepository;
   final AddNewTaskModel addNewTaskModel;
-  AddNewTaskPresenter(this.addNewTaskModel, this.addNewTaskRepository);
 
-  alou() {
-    addNewTaskRepository.getToDos();
-  }
+  AddNewTaskPresenter(
+      this.addNewTaskModel, this.addNewTaskRepository);
+
+  // alou() {
+  //   addNewTaskRepository.getToDos();
+  // }
 
   setNewTaskTitle(String value) => addNewTaskModel.newTaskTitle = value;
 
@@ -81,7 +85,6 @@ class AddNewTaskPresenter with ChangeNotifier {
     };
 
     var json = jsonEncode(userDataJson);
-  
 
     Map<String, String> headers = {
       'Content-Type': 'application/json',

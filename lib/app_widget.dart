@@ -13,7 +13,6 @@ class AppWidget extends StatefulWidget {
 }
 
 class _AppWidgetState extends State<AppWidget> {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -22,7 +21,7 @@ class _AppWidgetState extends State<AppWidget> {
         '/home': (context) => HomeView(),
         '/add_new': (context) => AddNewTaskView(),
         '/auth_view': (context) => AuthView(),
-        '/splash_view': (context) => WaitingView(),
+        '/splash_view': (context) => SplashView(),
       },
       title: 'To Do List',
       debugShowCheckedModeBanner: false,
@@ -30,7 +29,6 @@ class _AppWidgetState extends State<AppWidget> {
         primarySwatch: Colors.blue,
       ),
       initialRoute: '/splash_view',
-        
     );
   }
 }

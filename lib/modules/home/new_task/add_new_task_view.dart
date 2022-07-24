@@ -1,3 +1,4 @@
+import 'package:app_todo_lovepeople/modules/home/home_presenter.dart';
 import 'package:app_todo_lovepeople/modules/home/new_task/add_new_task_presenter.dart';
 import 'package:app_todo_lovepeople/modules/home/widgets/app_bar_widget.dart';
 import 'package:app_todo_lovepeople/modules/home/widgets/color_box_selection_widget.dart';
@@ -108,8 +109,9 @@ class _AddNewTaskViewState extends State<AddNewTaskView> {
               child: SizedBox(
                 width: size.width * 0.12,
                 child: InkWell(
-                  onTap: () async{
-                   await presenter.postNewTask();
+                  onTap: () async {
+                    await presenter.postNewTask();
+                    await context.read<HomePresenter>().getToDos();
                     Navigator.pop(context);
                   },
                   child: Image.asset(

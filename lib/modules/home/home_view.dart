@@ -37,29 +37,36 @@ class _HomeViewState extends State<HomeView> {
                   ),
                 ),
                 Container(
-                  color: Colors.amber,
                   height: size.height * 0.5,
                   width: size.width * 0.8,
                   child: ListView.builder(
-                    itemCount: presenter.homeModel.toDoList.length,
+                    itemCount: presenter.addNewTaskRepository.toDoList.length,
                     itemBuilder: (context, index) {
+                      String color =
+                          presenter.homeModel.toDoList[0].color.toString();
+                      dynamic colorDecoded =
+                          int.parse(color.substring(1, 7), radix: 16) +
+                              0xFF000000;
                       return SizedBox(
-                        height: size.height * 0.09,
+                        height: size.height * 0.12,
                         child: Card(
-                          color: Colors.white,
-                          child: Center(
-                              child: Text('${presenter.homeModel.toDoList}')),
+                          color: Color(colorDecoded),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                margin: EdgeInsets.only(
+                                  left: size.width * 0.05,
+                                  top: size.height * 0.01,
+                                ),
+                                child: Text(
+                                    '${presenter.homeModel.toDoList[index].title}'),
+                              ),
+                            ],
+                          ),
                         ),
                       );
                     },
-                  ),
-                ),
-                InkWell(
-                  onTap: presenter.addNewTaskRepository.getToDos,
-                  child: Container(
-                    color: Colors.amber,
-                    height: 50,
-                    width: 50,
                   ),
                 ),
               ],
