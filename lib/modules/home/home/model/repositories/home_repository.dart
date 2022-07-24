@@ -1,20 +1,17 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:app_todo_lovepeople/modules/home/new_task/model/add_new_task_json.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
-
-
-class AddNewTaskRepository {
- List<ToDo> toDoList = [];
-
+class HomeRepository with ChangeNotifier{
+  List<ToDo> toDoList = [];
 
   Future<List<ToDo>> getToDos() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 
     Uri url = Uri.parse('https://todo-lovepeople.herokuapp.com/todos');
-  
 
     Map<String, String> headers = {
       'Authorization': 'Bearer ${sharedPreferences.getString('jwt')}',
@@ -34,5 +31,23 @@ class AddNewTaskRepository {
     print(toDoList);
     return toDoList;
   }
-  
+
+  Future<http.Response> delTodos(id) async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+
+    var url = Uri.parse('https://todo-lovepeople.herokuapp.com/todos/$id');
+    String? token = sharedPreferences.getString('jwt');
+    final http.Response response = await http.delete(
+      url,
+      headers: {
+        'Content-type': 'application/json',
+        'Authorization': "Bearer $token"
+      },
+    );
+    print(response.statusCode);
+        notifyListeners();
+
+
+    return response;
+  }
 }

@@ -1,4 +1,4 @@
-import 'package:app_todo_lovepeople/modules/home/home_presenter.dart';
+import 'package:app_todo_lovepeople/modules/home/home/home_presenter.dart';
 import 'package:app_todo_lovepeople/modules/home/new_task/add_new_task_presenter.dart';
 import 'package:app_todo_lovepeople/modules/home/widgets/app_bar_widget.dart';
 import 'package:app_todo_lovepeople/modules/home/widgets/color_box_selection_widget.dart';
@@ -15,6 +15,8 @@ class AddNewTaskView extends StatefulWidget {
 }
 
 class _AddNewTaskViewState extends State<AddNewTaskView> {
+
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -92,7 +94,7 @@ class _AddNewTaskViewState extends State<AddNewTaskView> {
                 height: size.width * 0.1,
                 child: InkWell(
                   onTap: () {
-                    Navigator.pushNamed(context, '/home');
+                    Navigator.pop(context);
                   },
                   child: Image.asset(
                     'assets/images/shared/cross.png',
@@ -111,8 +113,7 @@ class _AddNewTaskViewState extends State<AddNewTaskView> {
                 child: InkWell(
                   onTap: () async {
                     await presenter.postNewTask();
-                    await context.read<HomePresenter>().getToDos();
-                    Navigator.pop(context);
+                    Navigator.popAndPushNamed(context, '/home');
                   },
                   child: Image.asset(
                     'assets/images/shared/verify.png',

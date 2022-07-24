@@ -1,11 +1,11 @@
 import 'package:app_todo_lovepeople/app_widget.dart';
 import 'package:app_todo_lovepeople/modules/auth/model/auth_model.dart';
 import 'package:app_todo_lovepeople/modules/auth/auth_presenter.dart';
-import 'package:app_todo_lovepeople/modules/home/home_model.dart';
-import 'package:app_todo_lovepeople/modules/home/home_presenter.dart';
+import 'package:app_todo_lovepeople/modules/home/home/model/home_model.dart';
+import 'package:app_todo_lovepeople/modules/home/home/home_presenter.dart';
+import 'package:app_todo_lovepeople/modules/home/home/model/repositories/home_repository.dart';
 import 'package:app_todo_lovepeople/modules/home/new_task/add_new_task_presenter.dart';
 import 'package:app_todo_lovepeople/modules/home/new_task/model/add_new_task_model.dart';
-import 'package:app_todo_lovepeople/modules/home/new_task/model/repositories/add_new_task_repository.dart';
 import 'package:app_todo_lovepeople/modules/sign_up/model/sign_up_model.dart';
 import 'package:app_todo_lovepeople/modules/sign_up/sign_up_presenter.dart';
 
@@ -24,12 +24,12 @@ void main() {
         ),
         ChangeNotifierProvider(
           create: (context) =>
-              AddNewTaskPresenter(AddNewTaskModel(), AddNewTaskRepository()),
+              AddNewTaskPresenter(AddNewTaskModel(), HomeRepository()),
         ),
         ChangeNotifierProvider(
           create: (context) => HomePresenter(
             HomeModel(),
-            AddNewTaskRepository(),
+            HomeRepository(),
           ),
         ),
       ],

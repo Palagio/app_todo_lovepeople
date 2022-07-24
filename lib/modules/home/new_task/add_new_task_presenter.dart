@@ -1,18 +1,16 @@
 import 'dart:convert';
-import 'package:app_todo_lovepeople/modules/home/home_model.dart';
-import 'package:app_todo_lovepeople/modules/home/home_presenter.dart';
+
+import 'package:app_todo_lovepeople/modules/home/home/model/repositories/home_repository.dart';
 import 'package:app_todo_lovepeople/modules/home/new_task/model/add_new_task_model.dart';
-import 'package:app_todo_lovepeople/modules/home/new_task/model/repositories/add_new_task_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AddNewTaskPresenter with ChangeNotifier {
-  final AddNewTaskRepository addNewTaskRepository;
+  final HomeRepository homeRepository;
   final AddNewTaskModel addNewTaskModel;
 
-  AddNewTaskPresenter(
-      this.addNewTaskModel, this.addNewTaskRepository);
+  AddNewTaskPresenter(this.addNewTaskModel, this.homeRepository);
 
   // alou() {
   //   addNewTaskRepository.getToDos();
@@ -77,7 +75,6 @@ class AddNewTaskPresenter with ChangeNotifier {
 
   Future postNewTask() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-
     Map<dynamic, dynamic> userDataJson = {
       'title': addNewTaskModel.newTaskTitle,
       'description': addNewTaskModel.newTaskDescription,
@@ -100,7 +97,9 @@ class AddNewTaskPresenter with ChangeNotifier {
         body: json,
       );
       print(response.statusCode);
-      if (response.statusCode == 200) {}
+      if (response.statusCode == 200) {
+       
+      }
     } catch (e) {
       print(e);
     }
