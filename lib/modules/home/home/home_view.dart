@@ -38,9 +38,10 @@ class _HomeViewState extends State<HomeView> {
           child: Consumer<HomePresenter>(builder: (context, presenter, child) {
             return Column(
               children: [
-                const Padding(
+                Padding(
                   padding: EdgeInsets.only(left: 25.0, right: 25, top: 25),
                   child: SearchWordsWidget(
+                    onChanged: presenter.setSearchText,
                     hintText: 'Busque palavras-chave',
                   ),
                 ),

@@ -7,6 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeRepository with ChangeNotifier{
   List<ToDo> toDoList = [];
+  List<ToDo> listToShow = [];
 
   Future<List<ToDo>> getToDos() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
