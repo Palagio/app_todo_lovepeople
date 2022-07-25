@@ -1,5 +1,5 @@
 import 'package:app_todo_lovepeople/modules/auth/auth_view.dart';
-import 'package:app_todo_lovepeople/modules/auth/waiting_view.dart';
+
 import 'package:app_todo_lovepeople/modules/home/home_view.dart';
 import 'package:app_todo_lovepeople/modules/home/new_task/add_new_task_view.dart';
 import 'package:app_todo_lovepeople/modules/sign_up/sign_up_view.dart';
@@ -13,7 +13,6 @@ class AppWidget extends StatefulWidget {
 }
 
 class _AppWidgetState extends State<AppWidget> {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -22,7 +21,6 @@ class _AppWidgetState extends State<AppWidget> {
         '/home': (context) => HomeView(),
         '/add_new': (context) => AddNewTaskView(),
         '/auth_view': (context) => AuthView(),
-        '/splash_view': (context) => WaitingView(),
       },
       title: 'To Do List',
       debugShowCheckedModeBanner: false,
@@ -30,7 +28,6 @@ class _AppWidgetState extends State<AppWidget> {
         primarySwatch: Colors.blue,
       ),
       initialRoute: '/auth_view',
-        
     );
   }
 }

@@ -2,13 +2,14 @@ import 'dart:convert';
 import 'package:app_todo_lovepeople/modules/home/new_task/new_task_model.dart';
 
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Repository {
   Future<List<NewTaskModel>> getTodos() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     var url = Uri.parse('https://todo-lovepeople.herokuapp.com/todos');
     List<NewTaskModel> listTodo = [];
-    String token =
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTM2LCJpYXQiOjE2NTc5MTAxMTksImV4cCI6MTY2MDUwMjExOX0.ZSNNbYk8OrG1jNJTMYBMRAQDYDPp84FKxddxoWA_ZDw';
+    var token = sharedPreferences.getString('jwt')!;
     final result = await http.get(url, headers: {
       "Content-Type": "application/json",
       "Authorization": "Bearer $token"
@@ -26,10 +27,11 @@ class Repository {
   }
 
   Future<NewTaskModel> postTodos({Map? body}) async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    var token = sharedPreferences.getString('jwt')!;
     var url = Uri.parse('https://todo-lovepeople.herokuapp.com/todos');
     final body1 = jsonEncode(body);
-    String token =
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTM2LCJpYXQiOjE2NTc5MTAxMTksImV4cCI6MTY2MDUwMjExOX0.ZSNNbYk8OrG1jNJTMYBMRAQDYDPp84FKxddxoWA_ZDw';
+
     return http.post(
       url,
       body: body1,
@@ -48,9 +50,9 @@ class Repository {
   }
 
   Future<http.Response> delTodos(id) async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     var url = Uri.parse('https://todo-lovepeople.herokuapp.com/todos/$id');
-    String token =
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTM2LCJpYXQiOjE2NTc5MTAxMTksImV4cCI6MTY2MDUwMjExOX0.ZSNNbYk8OrG1jNJTMYBMRAQDYDPp84FKxddxoWA_ZDw';
+    var token = sharedPreferences.getString('jwt')!;
     final http.Response response = await http.delete(
       url,
       headers: {

@@ -1,13 +1,16 @@
+
 import 'package:app_todo_lovepeople/app_widget.dart';
-import 'package:app_todo_lovepeople/modules/auth/model/auth_model.dart';
 import 'package:app_todo_lovepeople/modules/auth/auth_presenter.dart';
 import 'package:app_todo_lovepeople/modules/home/home_page_controller.dart';
 import 'package:app_todo_lovepeople/modules/sign_up/model/sign_up_model.dart';
 import 'package:app_todo_lovepeople/modules/sign_up/sign_up_presenter.dart';
+import 'package:app_todo_lovepeople/modules/auth/model/auth_model.dart';
 import 'package:app_todo_lovepeople/modules/home/new_task/add_new_task_controller.dart';
 import 'package:app_todo_lovepeople/modules/home/new_task/repository/new_task_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'modules/sign_up/sign_up_presenter.dart';
 
 void main() {
   final repository = Repository();
@@ -20,6 +23,7 @@ void main() {
         ChangeNotifierProvider(
           create: (context) => SignUpPresenter(SignUpModel()),
         ),
+
         ChangeNotifierProvider<AddNewTaskController>(
           create: (context) => AddNewTaskController(repository),
         ),

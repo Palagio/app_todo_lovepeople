@@ -4,7 +4,7 @@ import 'package:app_todo_lovepeople/modules/home/widgets/app_bar_widget.dart';
 import 'package:app_todo_lovepeople/shared/widgets/new_task_form_field_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:validatorless/validatorless.dart';
+// import 'package:validatorless/validatorless.dart';
 
 class AddNewTaskView extends StatefulWidget {
   const AddNewTaskView({Key? key}) : super(key: key);
@@ -41,7 +41,7 @@ class _AddNewTaskViewState extends State<AddNewTaskView> {
               child: UserTextFormFieldWidget(
                 controller: _titleEC,
                 hintText: 'Título da Tarefa',
-                validator: Validatorless.required('Título obrigatório'),
+                // validator: Validatorless.required('Título obrigatório'),
               ),
             ),
             Positioned(
@@ -50,7 +50,7 @@ class _AddNewTaskViewState extends State<AddNewTaskView> {
               child: NewTaskFormFieldWidget(
                 controller: _descriptionEC,
                 hintText: 'Escreva uma descrição para sua tarefa.',
-                validator: Validatorless.required('Descrição obrigatória'),
+                // validator: Validatorless.required('Descrição obrigatória'),
               ),
             ),
             Positioned(
