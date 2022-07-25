@@ -127,7 +127,7 @@ class _AddNewTaskViewState extends State<AddNewTaskView> {
   }
 
   ColorBoxSelection(int? color) {
-    return InkWell(      
+    return InkWell(
       onTap: () {
         _colorEC = color;
       },

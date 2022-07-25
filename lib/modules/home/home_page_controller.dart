@@ -31,6 +31,6 @@ class HomePageController extends ChangeNotifier {
 
   void delete(int id) async {
     await repository.delTodos(id);
-    notifyListeners();
+    getTodos();
   }
 }
