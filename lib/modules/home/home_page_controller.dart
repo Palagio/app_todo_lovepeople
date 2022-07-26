@@ -12,12 +12,11 @@ class HomePageController extends ChangeNotifier {
 
   void getTodos() async {
     listTodos = await repository.getTodos();
+    listToShow = listTodos;
     notifyListeners();
   }
 
-  void load() {
-    listToShow = listTodos;
-  }
+  
 
   void onChangeText(String value) async {
     listToShow = listTodos.where((element) {
