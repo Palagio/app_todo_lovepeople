@@ -74,6 +74,7 @@ class SignUpView extends StatelessWidget {
                     presenter.validateSignUp();
                     if (presenter.signUpModel.isSignUpValid == true) {
                       presenter.postUserData();
+                      Navigator.pushNamed(context, '/cadastro_concluido');
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(

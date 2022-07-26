@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class TextButtonWidget extends StatelessWidget {
+class AuthTextButtonWidget extends StatelessWidget {
   final String text;
   final String buttonText;
 
-
   final double marginRight;
 
-  const TextButtonWidget({
+  const AuthTextButtonWidget({
     Key? key,
     required this.text,
     required this.buttonText,
@@ -35,7 +34,7 @@ class TextButtonWidget extends StatelessWidget {
             ),
           ),
           GestureDetector(
-            onTap: () =>Navigator.pop(context),
+            onTap: () => Navigator.pushNamed(context, '/sign_up_view'),
             child: Container(
               child: Text(
                 buttonText,

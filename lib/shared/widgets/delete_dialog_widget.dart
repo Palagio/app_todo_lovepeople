@@ -60,15 +60,8 @@ class DeleteDialogWidget extends StatelessWidget {
                 top: size.height * 0.09,
                 child: TextButton(
                   onPressed: () async {
-                    await context
-                        .read<HomePresenter>()
-                        .homeRepository
-                        .delTodos(toDoId);
-                    Navigator.pushReplacementNamed(context, '/home').then(
-                      (value) => setState(
-                        () {},
-                      ),
-                    );
+                    await context.read<HomePresenter>().deleteToDos(toDoId);
+                    Navigator.pop(context);
                   },
                   child: Text(
                     'Confirmar',

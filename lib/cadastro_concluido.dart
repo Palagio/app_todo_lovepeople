@@ -1,4 +1,3 @@
-import 'package:app_todo_lovepeople/main.dart';
 import 'package:app_todo_lovepeople/shared/widgets/dynamic-button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -41,7 +40,7 @@ class _CadastroConcluidoState extends State<CadastroConcluido> {
                   buttonColor: Color.fromARGB(255, 50, 1, 185),
                   width: 150,
                   radius: 20,
-                  onTap: () {}),
+                  onTap: () => Navigator.pushNamed(context, '/home')),
             ),
             Container(
               height: 220,

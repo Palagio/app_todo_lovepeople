@@ -5,10 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
-class HomeRepository with ChangeNotifier{
-  List<ToDo> toDoList = [];
-  List<ToDo> listToShow = [];
-
+class HomeRepository {
   Future<List<ToDo>> getToDos() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 
@@ -19,7 +16,8 @@ class HomeRepository with ChangeNotifier{
     };
 
     final response = await http.get(url, headers: headers);
-
+    List<ToDo> toDoList = [];
+    
     print(response.statusCode);
 
     if (response.statusCode == 200) {
@@ -46,8 +44,6 @@ class HomeRepository with ChangeNotifier{
       },
     );
     print(response.statusCode);
-        notifyListeners();
-
 
     return response;
   }

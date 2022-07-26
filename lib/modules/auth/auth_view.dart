@@ -1,4 +1,5 @@
 import 'package:app_todo_lovepeople/modules/auth/auth_presenter.dart';
+import 'package:app_todo_lovepeople/modules/auth/widgets/auth_text_button_widget.dart';
 import 'package:app_todo_lovepeople/shared/widgets/text_button_widget.dart';
 import 'package:app_todo_lovepeople/shared/widgets/dynamic-button_widget.dart';
 import 'package:app_todo_lovepeople/shared/widgets/password_text_field_widget.dart';
@@ -15,8 +16,6 @@ class AuthView extends StatefulWidget {
 }
 
 class _AuthViewState extends State<AuthView> {
-
-
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -97,10 +96,10 @@ class _AuthViewState extends State<AuthView> {
                   status: presenter.authModel.obscurePasswordStatus,
                   hintText: 'Senha',
                 ),
-                TextButtonWidget(
-                  buttonText: 'Clique aqui',
+                AuthTextButtonWidget(
                   text: 'Esqueceu seu login ou senha? ',
-                  marginRight: size.width * 0.18,
+                  buttonText: 'Clique aqui',
+                  marginRight: size.width * 0.15,
                 ),
                 SizedBox(
                   height: size.height * 0.08,
@@ -137,11 +136,11 @@ class _AuthViewState extends State<AuthView> {
                 SizedBox(
                   height: size.height * 0.07,
                 ),
-                TextButtonWidget(
-                  marginRight: 0,
+                AuthTextButtonWidget(
                   text: 'Não possui cadastro? ',
                   buttonText: 'Clique aqui',
-                ),
+                  marginRight: 0,
+                )
               ],
             );
           }),

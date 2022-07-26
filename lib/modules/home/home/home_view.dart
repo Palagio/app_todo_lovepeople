@@ -16,7 +16,6 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   @override
   void initState() {
-    context.read<HomePresenter>().homeRepository.toDoList = [];
     context.read<HomePresenter>().getToDos();
     super.initState();
   }
@@ -49,10 +48,10 @@ class _HomeViewState extends State<HomeView> {
                   height: size.height * 0.5,
                   width: size.width * 0.8,
                   child: ListView.builder(
-                    itemCount: presenter.homeRepository.toDoList.length,
+                    itemCount: presenter.toDoList.length,
                     itemBuilder: (context, index) {
                       String color = presenter
-                          .homeRepository.toDoList[index].color
+                          .toDoList[index].color
                           .toString();
                       dynamic colorDecoded =
                           int.parse(color.substring(1, 7), radix: 16) +
@@ -74,15 +73,15 @@ class _HomeViewState extends State<HomeView> {
                                       top: size.height * 0.01,
                                     ),
                                     child: Text(
-                                        '${presenter.homeRepository.toDoList[index].title}'),
+                                        '${presenter.toDoList[index].title}'),
                                   ),
                                   InkWell(
                                     onTap: () => showDialog(
                                       context: context,
                                       builder: (_) => DeleteDialogWidget(
-                                          toDoTitle: presenter.homeRepository
+                                          toDoTitle: presenter
                                               .toDoList[index].title,
-                                          toDoId: presenter.homeRepository
+                                          toDoId: presenter
                                               .toDoList[index].id),
                                     ),
                                     child: Container(
@@ -117,7 +116,7 @@ class _HomeViewState extends State<HomeView> {
           height: 50,
           child: InkWell(
             onTap: () {
-              Navigator.popAndPushNamed(context, '/add_new');
+              Navigator.pushNamed(context, '/add_new');
             },
             child: Image.asset(
               'assets/images/shared/plus.png',
