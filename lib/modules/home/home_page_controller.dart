@@ -16,8 +16,6 @@ class HomePageController extends ChangeNotifier {
     notifyListeners();
   }
 
-  
-
   void onChangeText(String value) async {
     listToShow = listTodos.where((element) {
       return element.title
