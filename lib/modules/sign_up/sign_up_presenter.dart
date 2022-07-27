@@ -1,60 +1,44 @@
-import 'dart:convert';
-import 'package:http/http.dart' as http;
+import 'package:app_todo_lovepeople/modules/sign_up/model/repositories/sign_up_repository.dart';
 import 'package:app_todo_lovepeople/modules/sign_up/model/sign_up_model.dart';
 import 'package:flutter/material.dart';
 
 class SignUpPresenter with ChangeNotifier {
   final SignUpModel signUpModel;
+  final SignUpRepository signUpRepository;
   SignUpPresenter(
     this.signUpModel,
+    this.signUpRepository,
   );
 
-  Future postUserData() async {
-    var passwordInt = int.parse(signUpModel.password);
+  bool isUsernameSignupValid = false;
 
-    Map<dynamic, dynamic> userDataJson = {
-      'username': signUpModel.username,
-      'email': "'${signUpModel.email}'",
-      'password': passwordInt
-    };
+  bool isPasswordValid = false;
 
-    var json = jsonEncode(userDataJson);
+  bool isEmailValid = false;
 
-    Map<String, String> headers = {"Content-Type": "application/json"};
+  bool isSignUpValid = false;
 
-    try {
-      var response = await http.post(
-        Uri.parse(
-          'https://todo-lovepeople.herokuapp.com/auth/local/register',
-        ),
-        headers: headers,
-        body: json,
-      );
-      print(response.body);
-      print(response.statusCode);
-      print(userDataJson);
-    } catch (e) {
-      print(e);
-    }
-  }
+  bool isSignUpButtonLoading = false;
+
+  String confirmPassword = '';
 
   validateSignUp() {
     validateUsername();
     validateEmail();
     validatePassword();
-    if (signUpModel.isEmailValid == true &&
-        signUpModel.isUsernameSignupValid == true &&
-        signUpModel.isPasswordValid == true) {
-      return signUpModel.isSignUpValid = true;
+    if (isEmailValid == true &&
+        isUsernameSignupValid == true &&
+        isPasswordValid == true) {
+      return isSignUpValid = true;
     }
   }
 
   validatePassword() {
-    if (signUpModel.password == signUpModel.confirmPassword &&
-        signUpModel.confirmPassword.length >= 6 &&
-        signUpModel.password.length >= 5) {
+    if (signUpRepository.password == confirmPassword &&
+        confirmPassword.length >= 6 &&
+        signUpRepository.password.length >= 5) {
       return {
-        signUpModel.isPasswordValid = true,
+        isPasswordValid = true,
       };
     } else {
       return false;
@@ -63,27 +47,30 @@ class SignUpPresenter with ChangeNotifier {
 
   validateEmail() {
     if (RegExp(r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$')
-        .hasMatch(signUpModel.email)) {
-      return signUpModel.isEmailValid = true;
+        .hasMatch(signUpRepository.email)) {
+      return isEmailValid = true;
     }
   }
 
   validateUsername() {
-    if (signUpModel.username.trim().length < 3) return;
-    if (signUpModel.username.trim().split(' ').length < 2) return;
-    if (!RegExp("[a-zA-Z\u00C0-\u00FF]").hasMatch(signUpModel.username)) return;
+    if (signUpRepository.username.trim().length < 3) return;
+    if (signUpRepository.username.trim().split(' ').length < 2) return;
+    if (!RegExp("[a-zA-Z\u00C0-\u00FF]").hasMatch(signUpRepository.username))
+      return;
     return {
-      signUpModel.isUsernameSignupValid = true,
+      isUsernameSignupValid = true,
     };
   }
 
-  setUsername(String value) => signUpModel.username = value;
+  setUsername(String value) => signUpRepository.username = value;
 
-  setNumberEmailCpf(String value) => signUpModel.email = value;
+  setNumberEmailCpf(String value) {
+    signUpRepository.email = value;
+  }
 
-  setPassword(String value) => signUpModel.password = value;
+  setPassword(String value) => signUpRepository.password = value;
 
-  setConfirmPassword(String value) => signUpModel.confirmPassword = value;
+  setConfirmPassword(String value) => confirmPassword = value;
 
   void toggle(SignUpBoolValue status) {
     status.toggle(status);

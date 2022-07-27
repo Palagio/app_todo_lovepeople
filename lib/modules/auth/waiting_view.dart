@@ -24,7 +24,7 @@ class _SplashViewState extends State<SplashView> {
 
   funcao() async {
     await context.read<AuthPresenter>().tokenVerify();
-    (context.read<AuthPresenter>().authModel.isUserLogged)
+    (context.read<AuthPresenter>().isUserLogged)
         ? Navigator.pushReplacementNamed(context, '/home')
         : Navigator.pushReplacementNamed(context, '/auth_view');
   }

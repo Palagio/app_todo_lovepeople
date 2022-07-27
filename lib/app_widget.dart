@@ -14,7 +14,6 @@ class AppWidget extends StatefulWidget {
 }
 
 class _AppWidgetState extends State<AppWidget> {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -25,14 +24,13 @@ class _AppWidgetState extends State<AppWidget> {
         '/auth_view': (context) => AuthView(),
         '/splash_view': (context) => SplashView(),
         '/cadastro_concluido': (context) => CadastroConcluido(),
-
       },
       title: 'To Do List',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/splash_view',
+      initialRoute: '/auth_view',
     );
   }
 }

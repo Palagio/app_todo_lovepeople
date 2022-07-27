@@ -106,8 +106,8 @@ class _AuthViewState extends State<AuthView> {
                 ),
                 DynamicButtonWidget(
                   onTap: () async {
-                    await presenter.postUserAuth();
-                    if (presenter.authModel.isAuthValid == true) {
+                    await presenter.authRepository.postUserAuth();
+                    if (presenter.authRepository.isAuthValid == true) {
                       Navigator.pushReplacementNamed(context, '/home');
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
