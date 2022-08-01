@@ -12,6 +12,8 @@ class CadastroConcluido extends StatefulWidget {
 class _CadastroConcluidoState extends State<CadastroConcluido> {
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 169, 1, 247),
       body: SafeArea(
@@ -19,7 +21,7 @@ class _CadastroConcluidoState extends State<CadastroConcluido> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
-              padding: EdgeInsets.only(top: 180),
+              padding: EdgeInsets.only(top: size.height * 0.25),
               child: Center(
                 child: Text(
                   'Cadastro Concluído!',
@@ -34,17 +36,17 @@ class _CadastroConcluidoState extends State<CadastroConcluido> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(bottom: 170),
+              padding: EdgeInsets.only(bottom: size.height * 0.18),
               child: DynamicButtonWidget(
                   text: 'Começar',
                   buttonColor: Color.fromARGB(255, 50, 1, 185),
-                  width: 150,
+                  width: size.width * 0.42,
                   radius: 20,
                   onTap: () => Navigator.pushNamed(context, '/auth_view')),
             ),
             Container(
-              height: 220,
-              width: 700,
+              height: size.height * 0.3,
+              width: size.width * 1,
               child: Flexible(
                 child: Stack(
                   children: [
@@ -53,8 +55,8 @@ class _CadastroConcluidoState extends State<CadastroConcluido> {
                       left: 1,
                       right: 1,
                       child: Container(
-                        height: 200,
-                        width: 700,
+                        height: size.height * 0.25,
+                        width: size.width * 1,
                         decoration: const BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.only(
@@ -76,7 +78,7 @@ class _CadastroConcluidoState extends State<CadastroConcluido> {
                       ),
                     ),
                     Positioned(
-                      bottom: 0,
+                      bottom: size.height * 0.02,
                       right: 20,
                       left: 20,
                       child: Text(
