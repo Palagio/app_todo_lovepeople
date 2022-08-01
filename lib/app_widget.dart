@@ -32,7 +32,7 @@ class _AppWidgetState extends State<AppWidget> {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/cadastro_concluido',
+      initialRoute: '/splash_view',
     );
   }
 }
