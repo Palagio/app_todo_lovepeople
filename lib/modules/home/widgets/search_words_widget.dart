@@ -21,9 +21,6 @@ class SearchWordsWidget extends StatelessWidget {
         height: size.height * 0.1,
         width: size.width * 0.9,
         child: TextFormField(
-          onTap: () {
-            showSearch(context: context, delegate: MySearchDelegate());
-          },
           onChanged: onChanged,
           decoration: InputDecoration(
             suffixIcon: InkWell(
@@ -55,40 +52,4 @@ class SearchWordsWidget extends StatelessWidget {
   }
 }
 
-class MySearchDelegate extends SearchDelegate {
-  @override
-  List<Widget>? buildActions(BuildContext context) {
-    // TODO: implement buildActions
-    throw UnimplementedError();
-  }
 
-  @override
-  Widget? buildLeading(BuildContext context) {
-    // TODO: implement buildLeading
-    throw UnimplementedError();
-  }
-
-  @override
-  Widget buildResults(BuildContext context) {
-    // TODO: implement buildResults
-    throw UnimplementedError();
-  }
-
-  @override
-  Widget buildSuggestions(BuildContext context) {
-    dynamic listToShow = context.read<HomePresenter>().listToShow;
-    ListView.builder(
-        itemCount: listToShow.toString().length,
-        itemBuilder: (context, index) {
-          final suggestions = listToShow[index];
-          return ListTile(
-            title: Text(suggestions),
-            onTap: (){
-              
-            },
-          );
-        });
-
-    throw UnimplementedError();
-  }
-}
