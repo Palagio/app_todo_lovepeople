@@ -10,7 +10,6 @@ import 'package:app_todo_lovepeople/modules/home/new_task/model/add_new_task_mod
 import 'package:app_todo_lovepeople/modules/sign_up/model/repositories/sign_up_repository.dart';
 import 'package:app_todo_lovepeople/modules/sign_up/model/sign_up_model.dart';
 import 'package:app_todo_lovepeople/modules/sign_up/sign_up_presenter.dart';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -35,6 +34,7 @@ void main() {
             HomeRepository(),
           ),
         ),
+
       ],
       child: AppWidget(),
     ),

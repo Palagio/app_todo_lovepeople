@@ -15,7 +15,6 @@ class AuthPresenter with ChangeNotifier {
   bool isPasswordValid = false;
 
 
-
   setUsername(String value) => authRepository.username = value;
 
   setPassword(String value) => authRepository.password = value;

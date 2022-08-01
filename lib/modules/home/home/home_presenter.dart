@@ -12,12 +12,15 @@ class HomePresenter with ChangeNotifier {
     this.homeRepository,
   );
 
+  String searchText = '';
+
   List<ToDo> toDoList = [];
 
   List<ToDo> listToShow = [];
 
-  setSearchText(String value) {
-    homeModel.searchText;
+
+
+  setSearchText(String value) async {
     listToShow = toDoList.where((element) {
       return element.title
           .toString()
