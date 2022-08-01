@@ -31,7 +31,7 @@ class AuthPresenter with ChangeNotifier {
 
   Future tokenVerify() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    if (await sharedPreferences.getString('jwt') != '') {
+    if (await sharedPreferences.getString('jwt') != null) {
       isUserLogged = true;
       notifyListeners();
     }

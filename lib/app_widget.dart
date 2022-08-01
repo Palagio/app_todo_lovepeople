@@ -1,6 +1,6 @@
 import 'package:app_todo_lovepeople/cadastro_concluido.dart';
 import 'package:app_todo_lovepeople/modules/auth/auth_view.dart';
-import 'package:app_todo_lovepeople/modules/auth/waiting_view.dart';
+import 'package:app_todo_lovepeople/modules/auth/splash_view.dart';
 import 'package:app_todo_lovepeople/modules/home/home/home_view.dart';
 import 'package:app_todo_lovepeople/modules/home/new_task/add_new_task_view.dart';
 import 'package:app_todo_lovepeople/modules/sign_up/sign_up_view.dart';

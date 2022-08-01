@@ -40,7 +40,7 @@ class _CadastroConcluidoState extends State<CadastroConcluido> {
                   buttonColor: Color.fromARGB(255, 50, 1, 185),
                   width: 150,
                   radius: 20,
-                  onTap: () => Navigator.pushNamed(context, '/home')),
+                  onTap: () => Navigator.pushNamed(context, '/auth_view')),
             ),
             Container(
               height: 220,
