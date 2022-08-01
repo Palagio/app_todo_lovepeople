@@ -1,4 +1,3 @@
-import 'package:app_todo_lovepeople/modules/home/home/home_presenter.dart';
 import 'package:app_todo_lovepeople/modules/home/new_task/add_new_task_presenter.dart';
 import 'package:app_todo_lovepeople/modules/home/widgets/app_bar_widget.dart';
 import 'package:app_todo_lovepeople/modules/home/widgets/color_box_selection_widget.dart';

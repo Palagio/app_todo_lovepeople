@@ -1,9 +1,9 @@
 import 'package:app_todo_lovepeople/modules/home/home/home_presenter.dart';
-import 'package:app_todo_lovepeople/modules/home/new_task/add_new_task_view.dart';
 import 'package:app_todo_lovepeople/modules/home/widgets/app_bar_widget.dart';
 import 'package:app_todo_lovepeople/modules/home/widgets/search_words_widget.dart';
 import 'package:app_todo_lovepeople/shared/widgets/delete_dialog_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class HomeView extends StatefulWidget {
@@ -40,19 +40,19 @@ class _HomeViewState extends State<HomeView> {
                 Padding(
                   padding: EdgeInsets.only(left: 25.0, right: 25, top: 25),
                   child: SearchWordsWidget(
-                    onChanged: presenter.setSearchText,
-                    hintText: 'Busque palavras-chave',
+                    hintText: 'Buscar palavras-chave',
+                    onChanged: presenter.onChangeText,
                   ),
                 ),
                 Container(
                   height: size.height * 0.5,
                   width: size.width * 0.8,
                   child: ListView.builder(
-                    itemCount: presenter.toDoList.length,
+                    shrinkWrap: true,
+                    itemCount: presenter.listToShow.length,
                     itemBuilder: (context, index) {
-                      String color = presenter
-                          .toDoList[index].color
-                          .toString();
+                      String color =
+                          presenter.listToShow[index].color.toString();
                       dynamic colorDecoded =
                           int.parse(color.substring(1, 7), radix: 16) +
                               0xFF000000;
@@ -73,16 +73,24 @@ class _HomeViewState extends State<HomeView> {
                                       top: size.height * 0.01,
                                     ),
                                     child: Text(
-                                        '${presenter.toDoList[index].title}'),
+                                      '${presenter.listToShow[index].title}',
+                                      style: GoogleFonts.montserrat(
+                                        textStyle: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w600,
+                                          color:
+                                              Color.fromARGB(255, 50, 1, 185),
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                   InkWell(
                                     onTap: () => showDialog(
                                       context: context,
                                       builder: (_) => DeleteDialogWidget(
-                                          toDoTitle: presenter
-                                              .toDoList[index].title,
-                                          toDoId: presenter
-                                              .toDoList[index].id),
+                                          toDoTitle:
+                                              presenter.toDoList[index].title,
+                                          toDoId: presenter.toDoList[index].id),
                                     ),
                                     child: Container(
                                       height: size.height * 0.04,
@@ -96,6 +104,23 @@ class _HomeViewState extends State<HomeView> {
                                     ),
                                   ),
                                 ],
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(
+                                  left: size.width * 0.05,
+                                  top: size.height * 0.01,
+                                ),
+                                child: Text(
+                                  presenter.listToShow[index].description
+                                      .toString(),
+                                  style: GoogleFonts.montserrat(
+                                    textStyle: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w400,
+                                      color: Color.fromARGB(255, 50, 1, 185),
+                                    ),
+                                  ),
+                                ),
                               ),
                             ],
                           ),

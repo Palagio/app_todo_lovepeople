@@ -1,6 +1,5 @@
 import 'package:app_todo_lovepeople/modules/auth/auth_presenter.dart';
 import 'package:app_todo_lovepeople/modules/auth/widgets/auth_text_button_widget.dart';
-import 'package:app_todo_lovepeople/shared/widgets/text_button_widget.dart';
 import 'package:app_todo_lovepeople/shared/widgets/dynamic-button_widget.dart';
 import 'package:app_todo_lovepeople/shared/widgets/password_text_field_widget.dart';
 import 'package:app_todo_lovepeople/modules/auth/widgets/auth_text_form_field_widget.dart';

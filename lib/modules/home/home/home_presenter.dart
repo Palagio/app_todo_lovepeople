@@ -18,15 +18,14 @@ class HomePresenter with ChangeNotifier {
 
   List<ToDo> listToShow = [];
 
-
-
-  setSearchText(String value) async {
+  void onChangeText(String value) async {
     listToShow = toDoList.where((element) {
       return element.title
           .toString()
           .toLowerCase()
           .contains(value.toLowerCase());
     }).toList();
+    print(listToShow);
     notifyListeners();
   }
 
