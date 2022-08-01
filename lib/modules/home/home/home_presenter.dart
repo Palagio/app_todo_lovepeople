@@ -36,6 +36,7 @@ class HomePresenter with ChangeNotifier {
 
   getToDos() async {
     toDoList = await homeRepository.getToDos();
+    listToShow = toDoList;
     notifyListeners();
   }
 }

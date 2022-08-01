@@ -51,6 +51,7 @@ class _HomeViewState extends State<HomeView> {
                     shrinkWrap: true,
                     itemCount: presenter.listToShow.length,
                     itemBuilder: (context, index) {
+                 
                       String color =
                           presenter.listToShow[index].color.toString();
                       dynamic colorDecoded =
